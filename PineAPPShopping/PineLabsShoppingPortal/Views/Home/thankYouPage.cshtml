@@ -1,0 +1,153 @@
+﻿@model PineLabsShoppingPortal.Models.ResponceDetail
+<div class="ps-page--simple">
+    <div class="ps-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                <li>Contact Us </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="ps-section--shopping ps-shopping-cart">
+    <div class="container">
+        <div class="ps-section__content">
+            <div class="row">
+
+                @if (Model.Status)
+                {
+
+                    <div class="col-xl-2 col-lg-12 col-md-12 col-sm-12 col-12" align="center">
+                        <img src="~/img/thank-you.jpg" class="img-fluid" width="250">
+                    </div>
+
+                    <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12 col-12" align="left">
+                        <p>&nbsp;</p>
+                        <p> Thanks for placing your order with us here at <strong>(Discount Tadkaa India Limited)</strong> </p>
+                        <p>Please find your order status in the "Orders" section in your account. Your order has been placed successfully</p>
+                    </div>
+                    @Html.Raw(Model.Message)
+                }
+                        else
+                        {
+                    < div > @Html.Raw(Model.Message) </ div >
+                            }
+                < div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" align="left">
+                    <p>&nbsp;</p>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <td><strong>Need More Support? </strong></td>
+                            <td> <strong> Call us : </strong> +91 88752 86682</td>
+                            <td> <strong> Email us : </strong> ccareutility@gmail.com</td>
+                        </tr>
+                    </table>
+                </div>
+
+
+
+                <div class="clearfix"></div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" align="left">
+                    <p>&nbsp;</p>
+                    <h4> YOUR ORDER DETAILS</h4>
+                    <hr>
+
+                    @*<table class="table table-bordered">
+                        <tbody>
+                            <tr class="yellowclr">
+                                <td class="tdwidth"> <strong> ITEMS DETAILS </strong></td>
+                                <td> <strong> PARTICULARS </strong></td>
+                                <td> <strong> DELIVERY STATUS </strong></td>
+                            </tr>
+                            <tr>
+                                <td class="tdwidth" align="center"><img src="img/products_img.png" alt=""> </td>
+                                <td>
+                                    Product: Boys White Regular Fit Printed Casual Shirt<br>
+                                    <span>Code: KBJT1131 </span> <br>
+                                    <span>Offer Price: 499.00 </span> <br>
+                                    <span> Discount Points: 120  </span> <br>
+                                    <span>Shipping Charges: 50.00 </span> <br>
+                                    <span>Net Price: 429.00  </span><br>
+                                </td>
+                                <td>
+                                    Dispatch Status : Pending <br>
+                                    Dispatch Status : Dispatched <br>
+                                    Courier : Blue Dart<br>
+                                    Doc. No. : <a href="#"> <strong>126456156</strong></a><br>
+                                    Date : 25-May-2020
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdwidth" align="center"><img src="img/products_img.png" alt=""> </td>
+                                <td>
+                                    <span>Product:</span> Bajaj Ceiling Fan EDGE 1200 mm White CF <br>
+                                    <span>Code:</span> Code-48 <br>
+                                    <span>Offer Price:</span> 1389.00<br>
+                                    <span>Discount Points:</span> 350<br>
+                                    <span>Shipping Charges:</span> 220.00<br>
+                                    <span>Net Price:</span> 1259.00<br>
+                                </td>
+                                <td>
+                                    Dispatch Status : Pending <br>
+                                    Dispatch Status : Dispatched <br>
+                                    Courier : Blue Dart<br>
+                                    Doc. No. : <a href="#"> <strong>126456156</strong></a><br>
+                                    Date : 25-May-2020
+                                </td>
+                            </tr>
+                            <tr align="left">
+                                <td class="rdwidth" align="center"><img src="img/products_img.png" alt=""> </td>
+                                <td>
+                                    <span>Product:</span> Sony SA-D40 C E12 Multimedia Speaker System with Bluetooth (Black) <br>
+                                    <span>Code:</span> SA-D40 <br>
+                                    <span>Offer Price:</span> 8190.00<br>
+                                    <span>Discount Points:</span> 410<br>
+                                    <span>Shipping Charges:</span> 200.00<br>
+                                    <span>Net Price:</span> 7980.00<br>
+                                </td>
+                                <td>
+                                    Dispatch Status : Pending <br>
+                                    Dispatch Status : Dispatched <br>
+                                    Courier : Blue Dart<br>
+                                    Doc. No. : <a href="#"> <strong>126456156</strong></a><br>
+                                    Date : 25-May-2020
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>*@
+
+
+                </div>
+
+                <div class="clearfix"></div>
+
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" align="left">
+                    <p>&nbsp;</p>
+
+                    @*<table class="table table-bordered">
+                        <tr class="yellowclr">
+                            <td>Order Date</td>
+                            <td>Order Number </td>
+                            <td>Payment Mode </td>
+                            <td>Payment status </td>
+                            <td>Order Value</td>
+                            <td>Dispatch Status</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday, 25th May 2020</td>
+                            <td>#1234567890 </td>
+                            <td>Cheque Monday, May 25, 2020</td>
+                            <td>Pending </td>
+                            <td>Rs. 11,551.00</td>
+                            <td>Pending</td>
+                        </tr>
+                    </table>*@
+                </div>
+
+
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>

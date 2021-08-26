@@ -1,0 +1,96 @@
+-----------Exception Details on  20-04-2021 16:13:45-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 20-04-2021 16:13:45
+
+Error Line No : ine 203
+
+Error Message: TaskCanceledException
+
+Exception Type: System.Threading.Tasks.TaskCanceledException
+
+Error Location : A task was canceled.
+
+ Error Page Url: http://localhost:49636/Home/CreateOrder
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  20-04-2021 17:37:14-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 20-04-2021 17:37:14
+
+Error Line No : ine 203
+
+Error Message: TaskCanceledException
+
+Exception Type: System.Threading.Tasks.TaskCanceledException
+
+Error Location : A task was canceled.
+
+ Error Page Url: http://localhost:49636/Home/CreateOrder
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  20-04-2021 17:57:44-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 20-04-2021 17:57:44
+
+Error Line No : ine 203
+
+Error Message: TaskCanceledException
+
+Exception Type: System.Threading.Tasks.TaskCanceledException
+
+Error Location : A task was canceled.
+
+ Error Page Url: http://localhost:49636/Home/CreateOrder
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  20-04-2021 18:05:52-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 20-04-2021 18:05:52
+
+Error Line No : ine 203
+
+Error Message: TaskCanceledException
+
+Exception Type: System.Threading.Tasks.TaskCanceledException
+
+Error Location : A task was canceled.
+
+ Error Page Url: http://localhost:49636/Home/CreateOrder
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+

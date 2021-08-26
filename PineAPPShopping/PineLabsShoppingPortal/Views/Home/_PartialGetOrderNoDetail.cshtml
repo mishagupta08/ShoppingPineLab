@@ -1,0 +1,36 @@
+﻿@model PineLabsShoppingPortal.Models.HomeViewModel
+<div id="GrdOrderNo">
+    <div class="col-sm-12 label-success">
+        OrderDetail : <label class="text-uppercase" id="lblOrder"></label>
+    </div>
+
+    <div class="col-sm-12" style="height:300px; overflow-y: Auto;">
+        @if (Model.OrderDetail != null)
+        {
+            var grid = new WebGrid(source: Model.OrderDetail, canPage: false, canSort: false);
+            @grid.GetHtml(tableStyle: "table table-striped table-bordered table-hover dataTables", fillEmptyRows: false, mode: WebGridPagerModes.Numeric, htmlAttributes: new { id = "GrdApprovedOrder" },
+
+ columns: grid.Columns(
+                                  grid.Column(header: "Sr. No.", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
+
+
+
+                                 grid.Column("ProductName", "Product Name"),
+                                 grid.Column("Amount", "Amount"),
+                                 grid.Column("EnrptCardNo", "CardNo"),
+                                  grid.Column("EnrptCardPin", "PinNo"),
+                                    grid.Column("Validity", "Validity")
+              ));
+
+
+
+        }
+        else
+        {
+            <center> <p> No Record Found</p></center>
+
+        }
+    </div>
+  </div>
+
+

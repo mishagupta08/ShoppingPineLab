@@ -1,0 +1,31 @@
+﻿@model PineLabsShoppingPortal.Models.HomeViewModel
+@{
+//Layout = null;
+}
+
+<ul class="menu--dropdown">
+    @foreach (var category in Model.CategoryList)
+    {
+        var children = category.Children;
+
+        var t = category.Children != null && category.Children.Count > 0;
+        var hasChild = t == true ? "menu-item-has-children has-mega-menu" : string.Empty;
+        <li class="current-menu-item @hasChild">
+            <a href="#"><i class="icon-desktop"></i> @category.Name</a>
+            <div class="mega-menu">
+                <div class="mega-menu__column">
+                    <h4>@category.Name<span class="sub-toggle"></span></h4>
+                    <ul class="mega-menu__list">
+                        
+                            @*@foreach (var childCat in category.Children)
+                            {
+                                <li class="current-menu-item "><a href="@Url.Action("GetProductListView","Home", new { page = 1, catId = childCat.ApiCatId })">@childCat.Name</a> </li>
+                            }*@
+                        <li class="current-menu-item "><a href="@Url.Action("GetProductListView","Home", new { page = 1, catId = category.ApiCatId})">@category.Name</a> </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

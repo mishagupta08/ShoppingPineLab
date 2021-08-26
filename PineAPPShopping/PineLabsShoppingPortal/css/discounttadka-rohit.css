@@ -1,0 +1,424 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+ .alertcss {
+	position:relative;
+	padding: 8px 15px;
+	margin-bottom:1rem;
+	border:1px solid transparent;
+	border-radius:.25rem;
+	margin-top: 4px;
+	}
+ 
+* {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 300;
+}
+
+
+.alert-successcss {
+	color:#155724;
+	background-color: #d4edda6b;
+	border-color:#c3e6cb;
+}
+
+.alert-dangercss {
+	color:#721c24;
+	background-color: #f8d7da73;
+	border-color:#f5c6cb;
+}
+ 
+ 
+.form-checkcss {
+	position:relative;
+	display:block;
+	padding-left:1.25rem;
+}
+
+ 
+.radiobtn{
+	box-sizing:border-box;
+	padding: 3px;
+	width: 17px;
+}
+
+
+.labelcss {
+	display:inline-block;
+	margin-bottom:.5rem;
+	margin-left: 13px;
+	padding-top: 3px;
+}
+   
+.textalign{
+padding-top: 15px;
+
+}
+ 
+.decreasegap {
+  padding: 20px 0;
+}
+
+   
+/*@media (min-width:380px) {
+.modal-dialog {max-width: 1300px;margin: 9.75rem auto;}
+.modal-dialog-centered {
+min-height:calc(100% - (2rem * 2))
+}
+
+@media (min-width:400px) {
+.modal-dialog {margin-top: 136px;}
+}
+*/
+
+
+@media (min-width:380px) {
+.modalwidth {max-width: 1000px;margin: 9.75rem auto;}
+ }
+
+@media (min-width:400px) {
+.modal-dialogcss {margin-top: 136px;}
+}
+  
+  
+  
+.modalcontentcss {
+	position:relative;
+	display:-ms-flexbox;
+	display:flex;
+	-ms-flex-direction:column;
+	flex-direction:column;
+	width:100%;
+	pointer-events:auto;
+	background-color:#fff;
+	background-clip:padding-box;
+	border:1px solid rgba(0, 0, 0, .2);
+	border-radius:.3rem;
+	outline:0;
+	/*height: 550px;*/
+}
+
+ 
+ .boxma{
+ background-color:#FFCC33;
+ height:100px;
+ width:100px;
+ border-radius:20px;
+ margin-bottom:20px;
+ }
+  
+ .boxrow{
+ padding:10px;
+ margin-bottom:40px;
+ }
+ 
+ 
+  .boxrow{
+ padding:10px;
+ margin-bottom:40px;
+ }
+ 
+  
+ 
+ .btngap1{
+ padding-top:25px;
+} 
+
+.btngap2{
+ padding-top:15px;
+} 
+
+
+ .btngap3{
+ padding-top:15px;
+} 
+
+   .topgap{
+ margin-top:10px;
+} 
+
+
+  .rightgap{
+  padding-right:60px;
+ } 
+
+ 
+  .vouchergap{
+  padding-right:75px;
+ } 
+
+  
+.texline{
+ text-decoration: underline;
+ }
+ 
+ .redalert {
+ color:red;
+ font-size:12px;
+ font-weight:400;
+ margin-top:5px;
+ margin-left:10px;
+ }
+ 
+ 
+ .tdwidth{
+  width: 180px;
+  }
+  
+  .yellowclr{
+  background-color:#fcb800;
+  color:#000000;
+  }
+ 
+ 
+ .imgicon1{ background-image:url(../img/myaccount_icon_1.png); }
+ .imgicon2{ background-image:url(../img/myaccount_icon_2.png); }
+ .imgicon3{ background-image:url(../img/myaccount_icon_3.png); }
+ .imgicon4{ background-image:url(../img/myaccount_icon_4.png); }
+ .imgicon5{ background-image:url(../img/myaccount_icon_5.png); }
+ .imgicon6{ background-image:url(../img/myaccount_icon_6.png); }
+ .imgicon7{ background-image:url(../img/myaccount_icon_7.png); }
+ .imgicon8{ background-image:url(../img/myaccount_icon_8.png); }
+ 
+ 
+ 
+
+.zoom {
+    padding: 10px;
+    transition: transform .2s;
+     margin: 8 auto;
+}
+
+.zoom:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.1); 
+}
+
+
+.editprofile{
+background-image:url(../img/editaccount_img.jpg);
+width:100px;
+height:100px;
+}
+
+
+.topmargin{
+margin-top: 5px;
+}
+
+
+
+.cartboxcss {
+	right: -63px !important;
+  	padding-top: 10px !important;
+}
+
+
+.cartboxicon {
+  right: 71px;
+}
+
+ 
+
+.ps-block--product-box .ps-block__products .ps-tab-list_custom {
+  display: block;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.ps-block--product-box .ps-block__products .ps-tab-list_custom li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.ps-block--product-box .ps-block__products .ps-tab-list_custom li a {
+  line-height: 20px;
+  font-size: 16px;
+  color: #666;
+}
+
+.ps-block--product-box .ps-block__products .ps-tab-list_custom li.active a {
+  color: #000;
+}
+
+.ps-block--product-box .ps-block__products .ps-tab-list_custom li:last-child {
+  margin-right: 0;
+}
+
+
+.modelboxmargin{
+    margin-top: 200px
+}
+
+.btnheight{
+height:50px;
+}
+
+
+
+.tablebanklogo {
+    max-height: 100%;
+    height: 30px;
+    width: auto;
+    margin: 0 auto;
+	}
+	
+	
+.photoimg {
+    display: table-cell;
+    height: 170px;
+	width:auto;
+    vertical-align: middle;
+	background-position: center center !important;
+}
+
+.imagescode {
+    width: auto;
+    height: auto;
+	}
+ 	
+	
+.ps-block--categories-tabs .ps-block__item a {
+    display: block;
+    width: 250px;
+    /*max-width: calc(100% / 6);*/
+    margin-bottom: 40px;
+    overflow: hidden;
+	}
+	
+	
+	.ps-block--categories-tabs .tabpadding {
+    padding: 20px 30px 30px;	
+	}
+	
+	
+.ps-block--categories-tabs .ps-block__item a img {
+    max-height: 200px;
+    -webkit-transition: all .4s ease-out;
+    transition: all .4s ease-out;
+	}
+	
+	
+	.titlemargin{
+	margin-top:5px;
+	margin-bottom:10px;
+	}
+	
+	
+	.marketprice{ color:#FF0000 !important; display:block;}
+	.offerprice{ color:#0000FF !important; display:block;}
+	.discounpoint{ color:#339900 !important; display:block;}
+	.businessvolume{ color:#FF00FF !important; display:block;}
+ 
+  
+  
+	.rowmargin{
+	margin-bottom: 50px !important;}
+	
+	
+	.smallgap{
+	margin-bottom: 50px !important;
+	background-color:#000000;
+	height:100px;
+	}
+ 	
+	.catfontsize {
+    font-size: 100%;
+	}
+  	
+    .delless {
+	text-decoration:line-through;
+	}
+	
+	.productpagebox{
+	  padding: 10px;
+	}
+	
+	
+	.topsearchbox {
+	  width: 125px;
+	}
+
+
+	.megamenubox {
+	  width: 600px !important;
+ 	}
+
+
+
+.widgettitleupdate{
+  margin-bottom: 1px !important;
+  }
+  
+  .figureupdate {
+  margin-top: 5px !important;
+
+}
+
+	.checkboxcss{
+	margin:3px 7px 3px 0px;
+	}
+	
+	.labelfec{
+	    margin-top: 0px;
+    font-size: 15px;
+	}
+	
+	.btcsize{
+	font-size: revert;
+	}
+	
+	.dropdowncss{
+    position: absolute;
+    transform: translate3d(0px, 30px, 0px);
+    top: 0px;
+    left: 0px;
+    will-change: transform;
+    width: 600px;
+	}
+	 
+ @media (min-width:400px) and (max-width:700px) {
+ .dropdowncss{
+   width: 250px;
+ }
+ 
+}
+ 
+.dealtodayheight{
+height:390px !important;
+}
+
+.magintop{
+ margin-top: 120px !important;
+}
+  
+.customweight {
+  padding: 20px;
+  max-width: calc(100% - -1px);
+  border-right: 1px solid #e1e1e1;
+}
+
+
+.overline{
+text-decoration: line-through;
+}
+ 
+
+.formcontrolborder {
+  border: 1px solid #999999;
+}
+
+.bannermargin{
+margin-bottom: 10px;
+}
+
+	
+.ps-btn--fullwidth, button.ps-btn--fullwidth {
+    /*width: 100%;*/
+    text-align: center;
+}
+	
+

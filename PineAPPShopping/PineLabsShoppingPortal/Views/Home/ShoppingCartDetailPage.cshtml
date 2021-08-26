@@ -1,0 +1,162 @@
+﻿@model PineLabsShoppingPortal.Models.HomeViewModel
+@using PineLabsShoppingPortal.Properties
+@{
+    Layout = "~/Views/Shared/productLayout.cshtml";
+}
+
+<div class="ps-page--simple">
+    <div class="ps-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                <li>Shopping Cart</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ps-section--shopping ps-shopping-cart decreasegap">
+        @if (Model == null || Model.CartContainer == null || Model.CartContainer.cartProductList == null || Model.CartContainer.cartProductList.Count == 0)
+        {
+            
+            <div class="container">
+            <div class="ps-cart__items">It Feels So Light</div>
+            </div>
+        }
+        else
+        {
+            <div class="container">
+                <div class="ps-section__content">
+                    <div class="table-responsive">
+
+                        <table class="table ps-table--shopping-cart">
+                            <thead>
+                                <tr>
+                                    <th>PARTICULARS</th>
+                                    <th>PRODUCT QUANTITY</th>
+                                    <th>MARKET PRICE</th>
+                                    <th>OFFER PRICE</th>
+                                    <th>DISCOUNT POINTS</th>
+                                    <th>SHIPPING CHARGES</th>
+                                    <th>NET AMOUNT</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var prod in Model.CartContainer.cartProductList)
+                                {
+                                    var quantityID = "productQuantity_" + prod.Id;
+                                    <tr>
+                                        <td>
+                                            <div class="ps-product--cart">
+                                                <div class="ps-product__thumbnail"><a href="@Url.Action("GetProductDetailPage", "Home", new { Sku = prod.ProductSku})"><img src="@prod.thumbnail" alt=""></a></div>
+                                                <div class="ps-product__content">
+                                                    <a href="#"> @prod.ProductName </a>
+                                                    <p>Sold By:<strong> DISCOUNT TADKA </strong> <br> COLOR : RED | SIZE : 42  </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group--number">
+
+                                                @*<button class="up">+</button>
+                                                <button class="down">-</button>*@
+                                                <label>@prod.Quantity</label> 
+
+                                                @*@Html.DropDownListFor(m => prod.Quantity, new SelectList(Model.CartQuantityCount, "Key", "Value"), new { @required = "0", id = "quantityDropDown", @class = "form-control", @style = "width: 156px;height: 30px;" })
+
+                                                <a href="#" name="updateQuantity" data-id="@prod.Id" class="text-uppercase">Update</a>*@
+                                            </div>
+                                        </td>
+                                        <td align="center">XXXX</td>
+                                        <td align="center">@prod.ProdPrice</td>
+                                        <td align="center">XXX</td>
+                                        <td align="center">XXX</td>
+                                        <td align="center">@prod.TotalPrice</td>
+                                        <td><a href="#" name="deleteCart" data-id="@prod.Id"><!--<i class="icon-cross"></i> --> <img src="~/img/delete_icon.png" class="img-fluid"></a></td>
+                                    </tr>
+                                }
+
+                                <tr class="bg-light">
+                                    <td>&nbsp;  </td>
+                                    <td>&nbsp;  </td>
+                                    <td>&nbsp;  </td>
+                                    <td>&nbsp;  </td>
+                                    <td>&nbsp;  </td>
+                                    <td>   </td>
+                                    <td>   </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xl-12 col-lg-2 col-md-12 col-sm-12 col-12" align="right">
+                            <h4> <small> Payable Amount  </small> : Rs. @Model.CartContainer.TotalAmountToPay</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+                <hr>
+                <div class="ps-section__footer">
+                    <div class="row">
+
+
+                        <div class="col-xl-12 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-block__header">
+                                <h5> Delivary Location </h5>
+                            </div><br>
+
+                            <div class="row">
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-check">
+                                        <div> <input class="form-check-input radiobtn" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" check> </div>
+                                        <label class="labelcss" for="create-account">Delivered to Home </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-check">
+                                        <div> <input class="form-check-input radiobtn" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" check> </div>
+                                        <label class="labelcss" for="create-account">Pickup from Authorized Dealer/Distributor </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-check">
+                                        <div> <input class="form-check-input radiobtn" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" check> </div>
+                                        <label class="labelcss" for="create-account">Pickup from Company Office/Store </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<a class="ps-btn ps-btn--fullwidth" href="checkout.html">Proceed to checkout</a>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <p>&nbsp;</p>
+
+                    <div class="ps-section__cart-actions">
+                        <a class="ps-btn" href="@Url.Action("Index","Home")"><i class="icon-arrow-left"></i> Back to Shop</a>
+                        <a class="ps-btn ps-btn--outline" href="@Url.Action("GetCartRelatedListView", "Home", new { pageName = Resources.CheckoutPage})"><i class="icon-sync"></i> Proceed to Checkout </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@*<script src="~/vendor/jquery/jquery.min.js"></script>
+<script src="~/unishop_theme/unishop_js/jquery-ui.js"></script>*@
+<script>
+    var jq = $.noConflict();
+    jq('a[name=deleteCart]').unbind();
+    jq('a[name=deleteCart]').click(function (e) {
+        DeleteDetail(this);
+    });
+</script>

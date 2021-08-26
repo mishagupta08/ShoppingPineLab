@@ -1,0 +1,181 @@
+﻿@model PineLabsShoppingPortal.Models.HomeViewModel
+@using PineLabsShoppingPortal.Properties
+@{
+    Layout = "~/Views/Shared/productLayout.cshtml";
+    ViewBag.Title = "MyOredrsReport";
+}
+<style>
+    th
+    {
+        font-weight: bold;
+    }
+</style>
+
+ 
+
+@*<link href="~/assets/bootstrap.css" rel="stylesheet" />
+<script src="~/assets/bootstrap.js"></script>*@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script><script type="text/javascript">
+    function ShowGrdOrderNo(obj,refno)
+    {
+        debugger;
+        var OrderRefNo = refno;
+        $.ajax({
+            type: "Post",
+            url: '/Home/SrchOrderDetail',
+            dataType: "Json",
+            data: { OrderRefNo: OrderRefNo },
+            success: function (data) {
+                debugger;
+                $('#divmodel').html(data.OrderDetail);
+                $('#myModal').modal('show');
+                //$('#divmodel').show();
+            }
+        });
+    }
+</script>
+
+
+
+<div class="ps-page--simple">
+    <div class="ps-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                <li>MY Orders Report </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-sm-12" style="height:500px; overflow-y: Auto;">
+       @if (Model == null || Model.OrderReport == null ||  Model.OrderReport.Count == 0)
+       {
+        <div class="ps-cart__items">No Products Found.</div>
+       }
+       else
+       {
+           <div class="ps-section__content">
+               <div class="table-responsive">
+
+                   <table id="bootstrap-data-table"  class="table table-striped table-bordered dataTables" cellspacing="0" width="100%"@*class="table ps-table--shopping-cart"*@>
+                       <thead>
+                           <tr>
+                               
+                               @*<th>Product Name</th>*@
+                                @*<th>Quantity</th>*@
+                               @*<th >Amount</th>*@
+                               
+                               <th>OrderRefNo</th>
+                               <th>Status</th>
+                               <th>OrderID</th>
+                               @*<th>Cart Number</th>
+                               <th>Cart Pin</th>
+                               <th>Name</th>
+                               <th>Validity</th>*@
+                               <th>Date</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           @foreach (var report in Model.OrderReport)
+                           {
+                               <tr>
+                                   @*<td align="center">@report.ProductName
+                                   </td>*@
+                                   @*<td align="center"> @report.Quantity </td>*@
+                                   @*<td align="center">@report.Amount</td>*@
+                                   <td align="center"><a href='#' onclick="ShowGrdOrderNo(this, '@report.refno')" >@report.refno</a></td>
+                                   <td align="center">@report.Status</td>
+                                   <td align="center">@report.OrderID</td>
+                                   @*<td align="center">@report.EnrptCardNo</td>
+                                   <td align="center">@report.EnrptCardPin</td>
+                                   <td align="center">@report.Name</td>
+                                   <td align="center">@report.Validity</td>*@
+                                   <td align="center">@report.Created</td>
+                               </tr>
+                           }
+
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+       }
+
+    </div>
+
+
+        <div class="modal fade " id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content Softclose">
+                    @*<div class="modal-header" >
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Order Number Detail</h4>
+                        </div>*@
+                    
+                    <div class="modal-body" id="divmodel">
+                     
+                        <table id="table" class="table table-striped table-bordered dataTables" cellspacing="0" width="100%">
+
+                            <thead>
+                                <tr>
+
+                                    <th>Product Name</th>
+                                    <th>Amount</th>
+                                    <th>Cart Number</th>
+                                    <th>Cart Pin</th>
+                                    <th>Name</th>
+                                    <th>Validity</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var report in Model.OrderDetail)
+                                {
+                                    <tr>
+                                        <td align="center">@report.ProductName</td>
+
+                                        <td align="center">@report.Amount</td>
+
+                                        <td align="center">@report.EnrptCardNo</td>
+                                        <td align="center">@report.EnrptCardPin</td>
+                                        <td align="center">@report.Validity</td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+
+                        <div id="GrdOrderNo">
+
+                            <div class="table table-responsive">
+                                
+                              
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="modal-footer" id="divfooter">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+   
+
+
+
+
+
+</div>
+

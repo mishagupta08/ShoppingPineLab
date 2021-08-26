@@ -1,0 +1,36 @@
+﻿@model PineLabsShoppingPortal.Models.HomeViewModel
+@using PineLabsShoppingPortal.Properties
+
+
+@if (Model == null || Model.CartContainer == null || Model.CartContainer.cartProductList == null || Model.CartContainer.cartProductList.Count == 0)
+{
+    <div  class="ps-cart__items">It Feels So Light</div>
+}
+else
+{
+    <div class="ps-cart__items">
+        @foreach (var prod in Model.CartContainer.cartProductList)
+        {
+            <div class="ps-product--cart-mobile">
+                <div class="ps-product__thumbnail"><a href="#"><img src="@prod.thumbnail" alt=""></a></div>
+                <div class="ps-product__content">
+                    <a class="ps-product__remove" name="deleteCartFunction" data-id="@prod.Id"><i class="icon-cross"></i></a><a href="#">@prod.ProductName</a>
+                    <p><strong>Sold by:</strong> YOUNG SHOP</p>
+                    <strong>@prod.Quantity x Rs. @prod.ProdPrice</strong>
+                    <small style="float:right;">@prod.TotalPrice</small>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="ps-cart__footer">
+        <h3>Total :<strong>Rs. @Model.CartContainer.TotalAmountToPay</strong></h3>
+        <h3>Total Discount :<strong>Rs. XXXX</strong></h3>
+        <h3>Total BV :<strong>Rs. XXXX</strong></h3>
+        <figure><a class="ps-btn" href="@Url.Action("GetCartRelatedListView", "Home", new { pageName = Resources.ShoppingCartDetailPage})">View Cart</a><a class="ps-btn" href="@Url.Action("GetCartRelatedListView", "Home", new { pageName = Resources.CheckoutPage})">Checkout</a></figure>
+        <p>&nbsp;</p><p>&nbsp;</p>
+    </div>
+}
+
+<script>
+   
+</script>

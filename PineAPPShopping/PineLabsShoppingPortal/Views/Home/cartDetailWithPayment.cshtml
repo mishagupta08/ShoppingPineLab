@@ -1,0 +1,671 @@
+﻿@model PineLabsShoppingPortal.Models.HomeViewModel
+@using PineLabsShoppingPortal.Properties
+@using PineLabsShoppingPortal.Models
+
+@{
+    Layout = "~/Views/Shared/productLayout.cshtml";
+    User current_user = (Session["UserDetail"] != null) ? Session["UserDetail"] as User : null;
+}
+
+<div class="ps-page--simple">
+    <div class="ps-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                <li>Shopping Cart</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="ps-section--shopping ps-shopping-cart decreasegap">
+    <div class="container">
+        @if (Model == null || Model.CartContainer == null || Model.CartContainer.cartProductList == null || Model.CartContainer.cartProductList.Count == 0)
+        {
+            <div class="ps-cart__items">No Products Found.</div>
+        }
+        else
+        {
+        <div class="ps-section__content">
+            <div class="table-responsive">
+
+                <table class="table ps-table--shopping-cart">
+                    <thead>
+                        <tr>
+                            <th>PARTICULARS</th>
+                            <th>PRODUCT QUANTITY</th>
+                            <th>MARKET PRICE</th>
+                            <th>OFFER PRICE</th>
+                            <th>DISCOUNT POINTS</th>
+                            <th>SHIPPING CHARGES</th>
+                            <th align="right">NET AMOUNT</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+@foreach (var prod in Model.CartContainer.cartProductList)
+{
+                        <tr>
+                            <td>
+                                <div class="ps-product--cart">
+                                    <div class="ps-product__thumbnail"><a href="@Url.Action("GetProductDetailPage", "Home", new { Sku = prod.ProductSku})"><img src="@prod.thumbnail" alt=""></a></div>
+                                    <div class="ps-product__content">
+                                        <a href="#"> @prod.ProductName </a>
+                                        <p>Sold By:<strong> DISCOUNT TADKA </strong> <br> COLOR : RED | SIZE : 42  </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td align="center"> @prod.Quantity </td>
+                            <td align="center">XXXX</td>
+                            <td align="center">@prod.ProdPrice</td>
+                            <td align="center">XXX</td>
+                            <td align="center">XXX</td>
+                            <td align="center">@prod.TotalPrice</td>
+                            <td><a href="#" name="deleteCart" data-id="@prod.Id"><!--<i class="icon-cross"></i> --> <img src="~/img/delete_icon.png" class="img-fluid"></a></td>
+                        </tr>
+}
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="clearfix"> </div>
+
+            <div class="row bg-light boxrow">
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6" align="left">
+                    <h5> Payable Amount :  </h5>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 rightgap" align="right">
+                    <h4>Rs. @Model.CartContainer.TotalAmountToPay</h4>
+                </div>
+
+            </div>
+
+
+            <div class="clearfix"> </div>
+            <div class="ps-section__footer">
+                @*<div class="row">
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <div class="ps-form__right">
+                            <div class="ps-form__left"> </div>
+                            <div class="form-group--nest">
+                                <input class="form-control" type="email" placeholder="Discount Voucher">
+
+                                <button class="ps-btn">APPLY </button>
+                            </div>
+                            <p class="text-danger"> Minimum Cart total must be Rs. 1000.00</p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <div class="ps-form__total">
+                            <div class="content">
+                                <div class="ps-block--checkout-total">
+
+
+                                    <div class="row topgap">
+
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6" align="left">
+                                            <p> Less : Discount Amount  </p>
+                                        </div>
+
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 vouchergap" align="right">
+                                            <p> Rs. 500.00 </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <div class="ps-form__right">
+                            <div class="ps-form__left"> </div>
+                            <div class="form-group--nest">
+                                <select name="" class="form-control" placeholder="State">
+                                    <option> Select Discount Voucher </option>
+                                    <option>..........</option>
+                                    <option>..........</option>
+                                    <option>..........</option>
+                                    <option>..........</option>
+                                    <option>..........</option>
+                                </select>
+                                <button class="ps-btn">APPLY </button>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <div class="ps-form__right">
+                            <div class="ps-form__left"> </div>
+                            <div class="alert alertcss alert-success alert-successcss" role="alert"> Discount Voucher apply is successfully : Rs. 200.00 </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <div class="ps-form__right">
+                            <div class="ps-form__left"> </div>
+                            <div class="form-group--nest">
+                                <select name="" class="form-control" placeholder="State">
+                                    <option> Select Discount Voucher </option>
+                                    <option>..........</option>
+                                    <option>..........</option>
+                                    <option>..........</option>
+                                    <option>..........</option>
+                                    <option>..........</option>
+                                </select>
+                                <button class="ps-btn">APPLY </button>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <div class="ps-form__right">
+                            <div class="ps-form__left"> </div>
+                            <div class="alert alert-success alert-successcss" role="alert"> Discount Voucher apply is successfully : Rs. 200.00 </div>
+                        </div>
+                    </div>
+                </div>*@
+                <p>&nbsp; </p>
+                <div class="clearfix"> </div>
+                @*<div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                        <table class="table">
+                            <tr>
+                                <td><h4 class="pull-left text-danger">FINAL AMOUNT TO PAY : </h4></td>
+                                <td><h4 class="pull-right text-danger">Rs. 975.00 </h4></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>*@
+                <div class="clearfix"> </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 card">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="form-check">
+                                <div>
+                                    <input class="form-check-input radiobtn" type="radio" name="PayMode" id="EwalletRadio" value="wallet" check="">
+                                </div>
+                                <label class="labelcss"><b> E-WALLET PAYMENT </b> </label>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="form-check">
+                                <div>
+                                    <input class="form-check-input radiobtn" type="radio" name="PayMode" id="IMPSRadio" value="bank" check="">
+                                </div>
+                                <label class="labelcss"> <b>IMPS/CASH/NEFT/RTGS/CHEQUE </b> </label>
+                            </div>
+                        </div>
+                        @*<div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="form-check">
+                                <div>
+                                    <input class="form-check-input radiobtn" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" check="">
+                                </div>
+                                <label class="labelcss"> <b> PAY BY QR CODE</b> </label>
+                            </div>
+                        </div>*@
+                        @*<div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="form-check">
+                                <div>
+                                    <input class="form-check-input radiobtn" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" check="">
+                                </div>
+                                <label class="labelcss" for="create-account"><b>PAYMENT GATEWAY </b> </label>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"> </div>
+
+            <p>&nbsp; </p>
+
+
+            <div class="row">
+                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <a class="ps-btn ps-btn--fullwidth" href="@Url.Action("CreateOrder","Home")"><i class="alert-info"></i> Proceed to Pay </a>
+                    <p>&nbsp; </p>
+                </div>
+            </div>
+
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="WalletPayment" style="display:none;">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 card" id="WalletPay_checkUser_div" style="display:none;">
+                        <br>
+                        <form id="WalletPay_checkUser" name="WalletPay_checkUser" onsubmit="return ValidateTransaction();">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td> User ID </td>
+                                    <td id="PaymentUserID"> 
+                                        @current_user.Username 
+                                        @*<input type="hidden" id="Username" value="@current_user.Username" />*@
+                                        <input type="hidden" id="Username" value="GW223344" />
+                                    </td>                                    
+                                </tr>
+                                <tr>
+                                    <td><p class="textalign">Select Wallet</p></td>
+                                    <td>
+                                        <select name="WalletType" id="WalletType" class="form-control" placeholder="Wallet Type">
+                                            <option value=""> Wallet Type </option>
+                                            <option value="M">Main Wallet</option>
+                                            <option value="R">Repurchase/Shopping Wallet</option>                                        
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><p class="textalign"> Wallet Password </p></td>
+                                    <td><input name="Password" type="text" class="form-control" placeholder="Wallet Password " value="123456" required="required"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="btngap1"> <p class="redalert" style="display:none;" id="Transactionlogin"> </p> 
+                                            <input type="submit" class="ps-btn ps-btn--fullwidth" value="Validate"/>
+                                         </div>
+                                    </td>
+                                </tr>
+                            </table>
+                       </form>
+                    </div>
+                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 card" style="display:none;" id="WalletPay_OTP">
+                        <br>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>Available Wallet Balance </td>
+                                <td> Rs. <span id="BalanceAmount"></span> </td>
+                            </tr>
+                            <tr>
+                                <td><img src="img/logo-photo.png" class="img-thumbnail img-fluid"> </td>
+                                <td><input type="text" class="form-control" placeholder="Captcha Code"></td>
+                            </tr>
+                            <tr> &nbsp; </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <p>OTP send on Mobile No. 99XXXXX09</p>
+                                    <div class="btngap2"> <p class="redalert"> this is invalid text. </p> <a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i> Generate OTP </a> </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 card" style="display:none;">
+                        <br>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><p class="textalign"> Enter OTP </p></td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Enter OTP">
+                                    <p> <a href="#"> <strong class="texline">Resend OTP</strong> </a> </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Amount to Pay </td>
+                                <td><h4>Rs. 975.00 </h4></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="form-group">
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="cb02" name="brand">
+                                            <label for="cb02"> i Accept <a href="#" class="text-primary" data-toggle="modal" data-target="#myModal"> Terms and Conditions </a> </label>
+                                        </div>
+                                    </div>
+                                    <div class="btngap3"> <p class="redalert"> this is invalid text. </p> <a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i>Proceed to Pay </a> </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <p>&nbsp; </p>
+            </div>
+
+
+                @*<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 card">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><img src="img/logo-photo.png" class="img-thumbnail img-fluid"> </td>
+                                <td><input type="text" class="form-control" placeholder="Captcha Code">                </td>
+                            </tr>
+                            <tr> &nbsp; </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <p>OTP send on Mobile No. 99XXXXX09</p>
+                                    <p>&nbsp;</p>
+                                    <div class="btngap2"><a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i> Generate OTP </a> </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 card">
+                        <br>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><p class="textalign"> Enter OTP </p></td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Enter OTP">
+                                    <p> <a href="#"> <strong class="texline">Resend OTP</strong> </a> </p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <div class="form-group">
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="cb02" name="brand">
+                                            <label for="cb02"> i Accept <a href="thankyou.html" class="text-primary"> Terms and Conditions </a> </label>
+                                        </div>
+                                    </div>
+                                    <div class="btngap3"> <a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i>Proceed to Pay </a> </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <p>&nbsp; </p>
+            </div>
+
+            <div class="clearfix"></div>
+
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 card">
+                        <br>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td> User ID </td>
+                                <td> Mukesh2 </td>
+                            </tr>
+                            <tr>
+                                <td><p class="textalign">Select Wallet</p></td>
+                                <td>
+                                    <select name="" class="form-control" placeholder="State">
+                                        <option> Wallet Type </option>
+                                        <option>M-WALLET</option>
+                                        <option>I-WALLET</option>
+                                        <option>SHOPPING WALLET</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p class="textalign"> Wallet Password </p></td>
+                                <td><input type="text" class="form-control" placeholder="Wallet Password ">                 </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="btngap1"> <a class="ps-btn ps-btn--fullwidth" href="#"><i class="alert-info"></i> Validate </a> </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 card">
+                        <br>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>Available Wallet Balance </td>
+                                <td> Rs. 5000 </td>
+                            </tr>
+                            <tr>
+                                <td><img src="img/logo-photo.png" class="img-thumbnail img-fluid"> </td>
+                                <td><input type="text" class="form-control" placeholder="Captcha Code">                </td>
+                            </tr>
+                            <tr> &nbsp; </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <p>OTP send on Mobile No. 99XXXXX09</p>
+                                    <div class="btngap2"><a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i> Generate OTP </a> </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 card">
+                        <br>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><p class="textalign"> Enter OTP </p></td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Enter OTP">
+                                    <p> <a href="#"> <strong class="texline">Resend OTP</strong> </a> </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Amount to Pay </td>
+                                <td><h4>Rs. 975.00 </h4></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="form-group">
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="cb02" name="brand">
+                                            <label for="cb02"> i Accept <a href="#" class="text-primary"> Terms and Conditions </a> </label>
+                                        </div>
+                                    </div>
+                                    <div class="btngap3"> <a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i>Proceed to Pay </a> </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <p>&nbsp; </p>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 card">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <p>&nbsp; </p>
+                                    <h5> SUPPLIER BANKS DETAILS</h5>
+                                    <hr>
+                                    <table class="table ps-table-shopping-cart table-bordered table-responsive">
+                                        <tr>
+                                            <td> Account Name </td>
+                                            <td> PRODUCT SOLUTIONS </td>
+                                            <td> PRODUCT SOLUTIONS </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Bank Name </td>
+                                            <td> Yes Bank </td>
+                                            <td> Yes Bank </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Account Type </td>
+                                            <td> Current Account </td>
+                                            <td> Current Account </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Account No. </td>
+                                            <td> 003383800001253 </td>
+                                            <td> 003383800001253 </td>
+                                        </tr>
+                                        <tr>
+                                            <td> IFSC Code </td>
+                                            <td> YESB0000033 </td>
+                                            <td> YESB0000033 </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Bank Logo </td>
+                                            <td><img src="img/logo-photo.png" class="img-fluid"> </td>
+                                            <td><img src="img/logo-photo.png" class="img-fluid"> </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-7">
+                                    <p>&nbsp;</p>
+                                    <h5>FILL PAYMENT DETAILS </h5>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title">Payment Mode :</label> -->
+                                            <select name="" class="form-control" placeholder="State">
+                                                <option> Select Payment Mode : </option>
+                                                <option>IMPS</option>
+                                                <option>CASH</option>
+                                                <option>NEFT</option>
+                                                <option>RTGS</option>
+                                                <option>CHEQUE</option>
+                                            </select>
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title"> Paid by Bank Branch : </label> -->
+                                            <input type="text" class="form-control" placeholder="Account Holder Name">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title"> Payment Ref No/UTR No: </label> -->
+                                            <input type="text" class="form-control" placeholder="Payment Ref No/UTR No ">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title"> Date : </label> -->
+                                            <input type="text" class="form-control" placeholder="Date">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title"> Paid by Bank :  </label> -->
+                                            <input type="text" class="form-control" placeholder="Paid by Bank  ">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title"> Paid by Bank Branch : </label> -->
+                                            <input type="text" class="form-control" placeholder="Paid by Bank Branch">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            Captcha Code : <img src="img/logo-photo.png" class="img-thumbnail img-fluid"> <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" placeholder="Captcha Code">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6"> <a class="ps-btn ps-btn--fullwidth" href="##"> <i class="alert-info"></i> Generate OTP </a> OTP send on Mobile No. 99XXXXX09                    </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" placeholder="Enter OTP">
+                                            <p> <a href="#"> <strong class="texline">Resend OTP</strong> </a> </p>
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title"> &nbsp; </label> -->
+                                            <h4> Amount to Pay :  Rs. 975.00 </h4>
+                                            <!--<input type="text" class="form-control" placeholder="Enter Payment Ref Branch"> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"> </div>
+                                <div class="clearfix"> </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                    <div class="form-group">
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="cb01">
+                                            <label for="cb01"> i Accept <a href="#" class="text-primary"> Terms and Conditions </a> </label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <p>&nbsp;</p>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12"> <a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i> Proceed to Pay </a> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>&nbsp; </p>
+            <div class="clearfix"> </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 card">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <p>&nbsp; </p>
+                                    <h5> SCAN QR CODE </h5>
+                                    <hr>
+                                    <div class="col-md-6">
+                                        <img src="img/qrcode.svg" class="img-thumbnail img-fluid"> <br>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <p>&nbsp;</p>
+                                    <h5>FILL PAYMENT DETAILS </h5>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title">Payment Mode :</label> -->
+                                            <select name="" class="form-control" placeholder="State">
+                                                <option> Select Payment Mode : </option>
+                                                <option>PhonePe</option>
+                                                <option>PayTm</option>
+                                                <option>UPI Payment</option>
+                                            </select>
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title"> Paid by Bank Branch : </label> -->
+                                            <input type="text" class="form-control" placeholder="Account Holder Name">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title"> Payment Ref No/UTR No: </label> -->
+                                            <input type="text" class="form-control" placeholder="UPI Ref No/UTR No ">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title"> Date : </label> -->
+                                            <input type="text" class="form-control" placeholder="Date">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            Captcha Code : <img src="img/logo-photo.png" class="img-thumbnail img-fluid"> <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" placeholder="Captcha Code">
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i> Generate OTP </a> OTP send on Mobile No. 99XXXXX09 <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" placeholder="Enter OTP">
+                                            <p> <a href="#"> <strong class="texline">Resend OTP</strong> </a> </p>
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!--<label class="info-title"> &nbsp; </label> -->
+                                            <h4> Amount to Pay :  Rs. 975.00 </h4>
+                                            <!--<input type="text" class="form-control" placeholder="Enter Payment Ref Branch"> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"> </div>
+                                <div class="clearfix"> </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+
+                                    <div class="form-group">
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="cb03" name="brand">
+                                            <label for="cb03"> i Accept <a href="#" class="text-primary">Terms and Conditions</a> </label>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <p>&nbsp;</p>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12"> <a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i> Proceed to Pay </a> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>*@
+            </div>}
+    </div>
+</div>

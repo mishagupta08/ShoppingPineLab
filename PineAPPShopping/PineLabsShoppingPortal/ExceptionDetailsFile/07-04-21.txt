@@ -1,0 +1,48 @@
+-----------Exception Details on  07-04-2021 13:05:33-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 07-04-2021 13:05:33
+
+Error Line No : ine 203
+
+Error Message: TaskCanceledException
+
+Exception Type: System.Threading.Tasks.TaskCanceledException
+
+Error Location : A task was canceled.
+
+ Error Page Url: http://localhost:49636/Home/CreateOrder
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  07-04-2021 13:12:16-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 07-04-2021 13:12:16
+
+Error Line No : ine 203
+
+Error Message: TaskCanceledException
+
+Exception Type: System.Threading.Tasks.TaskCanceledException
+
+Error Location : A task was canceled.
+
+ Error Page Url: http://localhost:49636/Home/CreateOrder
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+

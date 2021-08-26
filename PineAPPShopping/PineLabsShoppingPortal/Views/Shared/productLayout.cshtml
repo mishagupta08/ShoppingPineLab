@@ -1,0 +1,441 @@
+﻿@using PineLabsShoppingPortal.Models
+@using PineLabsShoppingPortal.Properties
+@{
+    Layout = null;
+    User current_user = (Session["UserDetail"] != null) ? Session["UserDetail"] as User : null;
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Online Shopping Site style, Books &amp; More. Best Offers!</title>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="~/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/fonts/Linearicons/Linearicons/Font/demo-files/demo.css">
+    <link rel="stylesheet" href="~/plugins/bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/plugins/owl-carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="~/plugins/slick/slick/slick.css">
+    <link rel="stylesheet" href="~/plugins/lightGallery-master/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="~/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css">
+    <link rel="stylesheet" href="~/plugins/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="~/plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/discounttadka-rohit.css">
+</head>
+<body>
+    @*<header class="header header--product" data-sticky="true">
+        <nav class="navigation">
+            <div class="container">
+                <article class="ps-product--header-sticky">
+                    <div class="ps-product__thumbnail"><img src="~/img/products/detail/fullwidth/1.jpg" alt="" /></div>
+                    <div class="ps-product__wrapper">
+                        <div class="ps-product__content">
+                            <a class="ps-product__title" href="#"> Discount Tadka Products </a>
+                            <ul class="ps-tab-list">
+                                <li class="active"><a href="#tab-1">Description</a></li>
+                                <li><a href="#tab-2">Specification</a></li>
+                                <li><a href="#tab-3">Vender</a></li>
+                            </ul>
+                        </div>
+                        <div class="ps-product__shopping"><span class="ps-product__price"><span>Rs. 1000.00</span> <del>Rs. 800.00</del></span><a class="ps-btn" href="#"> Add to Cart</a></div>
+                    </div>
+                </article>
+            </div>
+        </nav>
+    </header>*@
+
+    <header class="header header--1" data-sticky="false">
+        <div class="header__top">
+            <div class="ps-container">
+                <div class="header__left">
+                    <div class="menu--product-categories">
+                        <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>
+                        <div class="menu__content websiteHeaderMenu" id="websiteHeaderMenu">
+                            @***Menus will render form homepagemenucontainer partial view ****@
+                        </div>
+                    </div>
+                    <a class="ps-logo" href="@Url.Action("Index","Home")">
+                        <div class="logobox" align="center"> <img src="~/img/logo3.png" class="logoimg" alt=""> </div>
+                    </a>
+                </div>
+                <div class="header__center">
+                    <form class="ps-form--quick-search" action="#" method="get">
+                        <div class="form-group--icon">
+                            <i class="icon-chevron-down"></i>
+                            <select class="form-control">
+                                <option value="0" selected="selected">All</option>
+                                <option class="level-0" value="babies-moms">Babies & Moms</option>
+                                <option class="level-0" value="books-office">Books & Office</option>
+                                <option class="level-0" value="cars-motocycles">Cars & Motocycles</option>
+                                <option class="level-0" value="clothing-apparel">Clothing & Apparel</option>
+                                <option class="level-1" value="accessories-clothing-apparel">  Accessories</option>
+                                <option class="level-1" value="bags"> Bags</option>
+                                <option class="level-1" value="kids-fashion">  Kid’s Fashion</option>
+                                <option class="level-1" value="mens">   Mens</option>
+                                <option class="level-1" value="shoes">  Shoes</option>
+                                <option class="level-1" value="sunglasses">  Sunglasses</option>
+                                <option class="level-1" value="womens">   Womens</option>
+                                <option class="level-0" value="computers-technologies">Computers & Technologies</option>
+                                <option class="level-1" value="desktop-pc">   Desktop PC</option>
+                                <option class="level-1" value="laptop">   Laptop</option>
+                                <option class="level-1" value="smartphones">   Smartphones</option>
+                                <option class="level-0" value="consumer-electrics">Consumer Electrics</option>
+                                <option class="level-1" value="air-conditioners">   Air Conditioners</option>
+                                <option class="level-2" value="accessories">      Accessories</option>
+                                <option class="level-2" value="type-hanging-cell">      Type Hanging Cell</option>
+                                <option class="level-2" value="type-hanging-wall">      Type Hanging Wall</option>
+                                <option class="level-1" value="audios-theaters">   Audios & Theaters</option>
+                                <option class="level-2" value="headphone">      Headphone</option>
+                                <option class="level-2" value="home-theater-system">      Home Theater System</option>
+                                <option class="level-2" value="speakers">      Speakers</option>
+                                <option class="level-1" value="car-electronics">   Car Electronics</option>
+                                <option class="level-2" value="audio-video">      Audio & Video</option>
+                                <option class="level-2" value="car-security">      Car Security</option>
+                                <option class="level-2" value="radar-detector">      Radar Detector</option>
+                                <option class="level-2" value="vehicle-gps">      Vehicle GPS</option>
+                                <option class="level-1" value="office-electronics">   Office Electronics</option>
+                                <option class="level-2" value="printers">      Printers</option>
+                                <option class="level-2" value="projectors">      Projectors</option>
+                                <option class="level-2" value="scanners">      Scanners</option>
+                                <option class="level-2" value="store-business">      Store & Business</option>
+                                <option class="level-1" value="refrigerators">   Refrigerators</option>
+                                <option class="level-1" value="tv-televisions">   TV Televisions</option>
+                                <option class="level-2" value="4k-ultra-hd-tvs">      4K Ultra HD TVs</option>
+                                <option class="level-2" value="led-tvs">      LED TVs</option>
+                                <option class="level-2" value="oled-tvs">      OLED TVs</option>
+                                <option class="level-1" value="washing-machines">   Washing Machines</option>
+                                <option class="level-2" value="type-drying-clothes">      Type Drying Clothes</option>
+                                <option class="level-2" value="type-horizontal">      Type Horizontal</option>
+                                <option class="level-2" value="type-vertical">      Type Vertical</option>
+                                <option class="level-0" value="garden-kitchen">Garden & Kitchen</option>
+                                <option class="level-1" value="cookware">   Cookware</option>
+                                <option class="level-1" value="decoration">   Decoration</option>
+                                <option class="level-1" value="furniture">   Furniture</option>
+                                <option class="level-1" value="garden-tools">   Garden Tools</option>
+                                <option class="level-1" value="home-improvement">   Home Improvement</option>
+                                <option class="level-1" value="powers-and-hand-tools">   Powers And Hand Tools</option>
+                                <option class="level-1" value="utensil-gadget">   Utensil & Gadget</option>
+                                <option class="level-0" value="health-beauty">Health & Beauty</option>
+                                <option class="level-1" value="equipments">   Equipments</option>
+                                <option class="level-1" value="hair-care">   Hair Care</option>
+                                <option class="level-1" value="perfumer">   Perfumer</option>
+                                <option class="level-1" value="skin-care">   Skin Care</option>
+                                <option class="level-0" value="jewelry-watches">Jewelry & Watches</option>
+                                <option class="level-1" value="gemstone-jewelry">   Gemstone Jewelry</option>
+                                <option class="level-1" value="mens-watches">   Men’s Watches</option>
+                                <option class="level-1" value="womens-watches">   Women’s Watches</option>
+                                <option class="level-0" value="phones-accessories">Phones & Accessories</option>
+                                <option class="level-1" value="iphone-8">   Iphone 8</option>
+                                <option class="level-1" value="iphone-x">   Iphone X</option>
+                                <option class="level-1" value="sam-sung-note-8">   Sam Sung Note 8</option>
+                                <option class="level-1" value="sam-sung-s8">   Sam Sung S8</option>
+                                <option class="level-0" value="sport-outdoor">Sport & Outdoor</option>
+                                <option class="level-1" value="freezer-burn">   Freezer Burn</option>
+                                <option class="level-1" value="fridge-cooler">   Fridge Cooler</option>
+                                <option class="level-1" value="wine-cabinets">   Wine Cabinets</option>
+                            </select>
+                        </div>
+                        <input class="form-control" type="text" placeholder="I'm shopping for...">
+                        <button>Search</button>
+                    </form>
+                </div>
+                <div class="header__right">
+                    <div class="header__actions">
+
+                        <div class="ps-cart--mini">
+                            <a class="header__extra" href="@Url.Action("GetCartRelatedListView", "Home", new { pageName = Resources.ShoppingCartDetailPage})"><i class="icon-bag2"></i><span><i class="cartCount" id="cartCount">0</i></span></a>
+                            <div class="ps-cart__content cartContent">
+
+                            </div>
+                        </div>
+
+
+                        <div class="ps-block--user-header">
+                            <div class="ps-block__right"> Call Us : <strong><br>  +91 124567890 </strong>  </div>
+                        </div>
+
+
+                        <div class="ps-block--user-header">
+                            <div class="ps-block__left"><i class="icon-user"></i></div>
+                            <div class="ps-block__right">
+                                @if (current_user == null)
+                                {
+                                    <a href="@Url.Action("Index", "Login")">Login</a>
+                                    <a href="@Url.Action("Index", "Login")">Register</a>
+                                }
+                                else
+                                {
+                                    <div>
+                                        Welcome @current_user.Firstname
+                                    </div>
+                                }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navigation">
+            <div class="ps-container">
+                <div class="navigation__left">
+                    <div class="menu--product-categories">
+                        <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>
+                        <div class="menu__content websiteHeaderMenu">
+                            @*/***** Loaded form partial view ****/*@
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation__right">
+                    <ul class="menu menu--recent-view"></ul>
+                    <ul class="navigation__extra">
+                        <li>
+                            <div class="ps-dropdown">
+                                <a href="#">Sell With Us! </a>
+                                <ul class="ps-dropdown-menu">
+                                    <li><a href="#">Become A Vendor </a></li>
+                                    <li><a href="#">Vendor Login </a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        @if (current_user != null)
+                        {
+
+                            <li>
+                                <div class="ps-dropdown">
+                                    <a href="#">My Account </a>
+                                    <ul class="ps-dropdown-menu">
+                                        <li><a href="#"><strong>@current_user.Firstname  @current_user.Lastname</strong> </a></li>
+                                        <li> <hr> </li>
+                                        <li><a href="#">User Profile</a></li>
+                                        <li><a href="~/Home/MyOredrsReport">Orders</a></li>
+                                        <li><a href="#">My Discount Coupons  </a></li>
+                                        <li><a href="#">Point Ledger</a></li>
+                                        <li><a href="#">DB Login</a></li>
+                                        <li><a href="@Url.Action("LogOut", "Login")">Log Out </a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="#"> Balance Point : 15000</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+            </div>
+    </header>
+    <header class="header header--mobile header--mobile-product" data-sticky="true">
+        <div class="navigation--mobile">
+            <div class="navigation__left"><a class="header__back" href="shop-default.html"><i class="icon-chevron-left"></i><strong>Back to Categories</strong></a></div>
+            <div class="navigation__right">
+                <div class="header__actions">
+                    <div class="ps-cart--mini">
+                        <a class="header__extra" href="@Url.Action("GetCartRelatedListView", "Home", new { pageName = Resources.ShoppingCartDetailPage})"><i class="icon-bag2"></i><span><i id="cartCount1">0</i></span></a>
+                        <div class="ps-cart__content cartContent">
+@*commenting this for now. add cartContent as class name if want to add cart here*@
+                        </div>
+                    </div>
+                    <div class="ps-block--user-header">
+                        <div class="ps-block__left"><i class="icon-user"></i></div>
+                        <div class="ps-block__right"><a href="@Url.Action("Index","Login")">Login</a><a href="@Url.Action("Index","Login")">Register</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ps-search--mobile">
+            <form class="ps-form--search-mobile" action="#" method="get">
+                <div class="form-group--nest">
+                    <input class="form-control" type="text" placeholder="Search something...">
+                    <button><i class="icon-magnifier"></i></button>
+                </div>
+            </form>
+        </div>
+    </header>
+    @*/***HEADER FOR MOBILE----END**/*@
+    @*/******CART DESIGN********/*@
+    @*@RenderPage("~/Views/Shared/cartMobile.cshtml")*@
+    @**********MENU DESIGN******@
+    @RenderPage("~/Views/Shared/navigationMobile.cshtml")
+    @**********MENU DESIGN*------END*****@
+    @**********navigation MOBILE MENU DESIGN******@
+    @RenderPage("~/Views/Shared/navigationList.cshtml")
+    @**********navigation MOBILE MENU DESIGN*----END*****@
+    @***********SEARCH BAR*******@
+    <div class="ps-panel--sidebar" id="search-sidebar">
+        <div class="ps-panel__header">
+            <form class="ps-form--search-mobile" action="#" method="get">
+                <div class="form-group--nest">
+                    <input class="form-control" type="text" placeholder="Search something...">
+                    <button><i class="icon-magnifier"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="navigation__content"></div>
+    </div>
+    @***********SEARCH BAR*----END******@
+    @************MOBILE other MENUS*******@
+    <div class="ps-panel--sidebar" id="menu-mobile">
+        @RenderPage("~/Views/Shared/menuMobile.cshtml")
+    </div>
+    @************MOBILE MENUS**-------END*****@
+    @****Render Body Section****@
+    @RenderBody()
+    @******FOOTER********@
+    @RenderPage("~/Views/Shared/_footer.cshtml")
+    @******FOOTE0R----END********@
+    @******OTHER SECTION********@
+    <div id="back2top"><i class="pe-7s-angle-up"></i></div>
+    <div class="ps-site-overlay"></div>
+    <div id="loader-wrapper">
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <div class="ps-search" id="site-search">
+        <a class="ps-btn--close" href="#"></a>
+        <div class="ps-search__content">
+            <form class="ps-form--primary-search" action="#" method="post">
+                <input class="form-control" type="text" placeholder="Search for...">
+                <button><i class="aroma-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </div>
+    @******OTHER SECTION*----END*******@
+</body>
+<!-- Trigger the modal with a button -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg modalwidth">
+        <div class="modal-content modalcontentcss">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe src="ifream-textpage.html" id="info" class="iframe" name="info" seamless="" height="100%" width="100%"></iframe>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+</html>
+@**********SCRIPT SECTION***********@
+<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="~/plugins/jquery-1.12.4.min.js"></script>
+<script src="~/plugins/popper.min.js"></script>
+<script src="~/plugins/owl-carousel/owl.carousel.min.js"></script>
+<script src="~/plugins/bootstrap4/js/bootstrap.min.js"></script>
+<script src="~/plugins/imagesloaded.pkgd.min.js"></script>
+<script src="~/plugins/masonry.pkgd.min.js"></script>
+<script src="~/plugins/isotope.pkgd.min.js"></script>
+<script src="~/plugins/jquery.matchHeight-min.js"></script>
+<script src="~/plugins/slick/slick/slick.min.js"></script>
+<script src="~/plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+<script src="~/plugins/slick-animation.min.js"></script>
+<script src="~/plugins/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
+<script src="~/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="~/plugins/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+<script src="~/plugins/jquery.slimscroll.min.js"></script>
+<script src="~/plugins/select2/dist/js/select2.full.min.js"></script>
+<script src="~/plugins/gmap3.min.js"></script>
+<!-- custom scripts-->
+<script src="~/js/main.js"></script>
+<script src="~/Scripts/Project/dashbaord.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxflHHc5FlDVI-J71pO7hM1QJNW1dRp4U&amp;region=GB"></script>
+<script src="~/assets/js/lib/data-table/datatables.min.js"></script>
+<script src="~/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+<script src="~/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+<script src="~/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+<script src="~/assets/js/lib/data-table/jszip.min.js"></script>
+<script src="~/assets/js/lib/data-table/pdfmake.min.js"></script>
+<script src="~/assets/js/lib/data-table/vfs_fonts.js"></script>
+<script src="~/assets/js/lib/data-table/buttons.html5.min.js"></script>
+<script src="~/assets/js/lib/data-table/buttons.print.min.js"></script>
+<script src="~/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+<script src="~/assets/js/lib/data-table/datatables-init.js"></script>
+<link rel="stylesheet" href="~/assets/css/lib/datatable/dataTables.bootstrap.min.css" />
+
+
+@**********SCRIPT SECTION*----END**********@
+<script>
+    $(document).ready(function () {
+        $(".preloader").hide();
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: "LoadMenus",
+            success: function (result) {
+                $(".websiteHeaderMenu").html(result);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                // alert("Status: " + textStatus); alert("Error: " + errorThrown);
+            }
+        });
+
+        GetHeaderCartDetailView();
+
+        GetCartCount();
+        $('#bootstrap-data-table').DataTable();
+    });
+
+    function GetCartCount() {
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: "/Home/GetCartCount",
+            success: function (result) {
+                //alert(result);
+                debugger;
+                $("#cartCount").html(result);
+                $("#cartCount1").html(result);
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //alert("Status: " + textStatus); alert("Error: in cart count " + errorThrown);
+            }
+        });
+    }
+
+    function GetHeaderCartDetailView() {
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: "/Home/GetHeaderCartList",
+            success: function (result) {
+                $(".cartContent").html(result);
+                $('a[name=deleteCartFunction]').unbind();
+                $('a[name=deleteCartFunction]').click(function (e) {
+                    DeleteDetail(this);
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //alert("Status: " + textStatus); alert("Error: " + errorThrown);
+            }
+        });
+    }
+
+    function DeleteDetail(thisVar) {
+
+        $(".preloader").show();
+        var idVal = $(thisVar).attr("data-id");
+
+        $.ajax({
+            url: '/Home/DeleteCart',
+            type: 'Post',
+            datatype: 'Json',
+            data: { cartId: idVal }
+        }).done(function (result) {
+            $(".preloader").hide();
+            alert(result);
+            location.reload();
+        }).fail(function (error) {
+            $("#error").html(error.statusText);
+            $(".preloader").hide();
+        });
+
+        return false;
+    }
+</script>

@@ -1,0 +1,154 @@
+﻿@model PineLabsShoppingPortal.Models.HomeViewModel
+@using PineLabsShoppingPortal.Properties
+@{
+    Layout = "~/Views/Shared/productLayout.cshtml";
+}
+<div class="ps-page--simple">
+    <div class="ps-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                <li>Checkout  Details </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="ps-checkout ps-section--shopping decreasegap">
+    <div class="container">
+        <div class="ps-section__header">
+            <h4>Checkout Details / Billing Informations  </h4>
+        </div>
+        <div class="ps-section__content">
+
+
+
+            <form class="ps-form--checkout" id="checkoutPage" onsubmit="return SaveBillingAddress();">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 card">
+                        <div class="ps-form__billing-info">
+                            <br>
+                            <div class="form-group">
+
+                                <div class="form-group__content">
+                                    @Html.TextBoxFor(m => m.billingDetail.Firstname, new { @name = "firstname", @id = "username", @required = "required", @placeholder = "First Name", @class = "form-control" })
+                                </div>
+                                @*<p class="redalert"> this is invalid text. Please fill correct username  </p>*@
+                            </div>
+                            <div class="form-group">
+
+                                <div class="form-group__content">
+                                    @Html.TextBoxFor(m => m.billingDetail.lastname, new { @name = "lastname", @id = "lastname", @required = "required", @placeholder = "Last Name", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="form-group__content">
+                                    @Html.TextBoxFor(m => m.billingDetail.AddLineOne, new { @name = "address1", @id = "address1", @required = "required", @placeholder = "Address Line 1", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="form-group__content">
+                                    @Html.TextBoxFor(m => m.billingDetail.AddLineTwo, new { @name = "address1", @id = "address2", @required = "required", @placeholder = "Address Line 2", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="form-group__content">
+                                    @Html.TextBoxFor(m => m.billingDetail.City, new { @name = "City", @id = "city", @required = "required", @placeholder = "City", @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="form-group__content">
+                                    @Html.TextBoxFor(m => m.billingDetail.State, new { @name = "State", @id = "state", @required = "required", @placeholder = "State", @class = "form-control" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <div class="form-group__content">
+                                    @Html.TextBoxFor(m => m.billingDetail.Mobile, new { @name = "telephone", @id = "mobile", @required = "required", @placeholder = "Mobile", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="form-group__content">
+                                    @Html.TextBoxFor(m => m.billingDetail.Email, new { @name = "email", @id = "email", @required = "required", @placeholder = "Email", @type = "email", @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="form-group__content">
+                                    @Html.TextBoxFor(m => m.billingDetail.PostCode, new { @type = "number", @name = "postcode", @id = "email", @required = "required", @placeholder = "Postcode", @class = "form-control" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-12 col-sm-12 bg-light">
+                        <div class="ps-form__total">
+                            <p>&nbsp; </p>
+                            <h3 class="ps-form__heading"> Your Order </h3>
+                            <div class="content">
+                                <div class="ps-block--checkout-total">
+                                    <div class="ps-block__header">                                            </div>
+                                    <div class="ps-block__content">
+                                        <table class="table ps-block__products">
+                                            <tbody>
+
+                                                <tr>
+                                                    <th> <strong>PRODUCTS DETAILS </strong>  </th>
+                                                    <th align="right"> <p align="right"> <strong> AMOUNT</strong> </p> </th>
+                                                </tr>
+
+                                                @foreach (var prod in Model.CartContainer.cartProductList)
+                                                {
+                                                <tr>
+                                                    <td>
+                                                        <a href="#"> @prod.ProductName</a>
+                                                        <p>Sold By:<strong>YOUNG SHOP</strong></p>
+                                                        <p>Qty:<strong>@prod.Quantity</strong></p>
+                                                    </td>
+                                                    <td align="right">
+                                                        Rs. @prod.ProdPrice
+                                                    </td>
+                                                </tr>
+                                                }
+
+                                                <tr>
+                                                    <td><strong>Gross Total</strong> </td>
+                                                    <td align="right"><strong> Rs. @Model.CartContainer.TotalAmountToPay </strong></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Less : Discount Point </td>
+                                                    <td align="right"> Rs. -XXXX </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Add : Shipping </td>
+                                                    <td align="right"> Rs. XXXX </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><h4>Net Payable</h4> </td>
+                                                    <td align="right"> <h4>Rs. @Model.CartContainer.TotalAmountToPay</h4> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <hr>
+                                    </div>
+                                </div><button class="ps-btn ps-btn--fullwidth" type="submit"> Checkout  </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

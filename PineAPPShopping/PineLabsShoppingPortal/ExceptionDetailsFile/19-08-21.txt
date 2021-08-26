@@ -1,0 +1,24 @@
+-----------Exception Details on  19/08/2021 12:39:41-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 19/08/2021 12:39:41
+
+Error Line No : ine 204
+
+Error Message: TaskCanceledException
+
+Exception Type: System.Threading.Tasks.TaskCanceledException
+
+Error Location : A task was canceled.
+
+ Error Page Url: http://localhost:51451/Home/CreateOrder
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+

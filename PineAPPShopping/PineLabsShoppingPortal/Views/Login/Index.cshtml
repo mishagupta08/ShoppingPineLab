@@ -1,0 +1,112 @@
+﻿@model PineLabsShoppingPortal.Models.User
+@using PineLabsShoppingPortal.Properties
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <div class="ps-page--my-account">
+        <div class="ps-breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li>My account</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ps-my-account">
+            <div class="container">
+                <div class="ps-form--account ps-tab-root">
+                    <ul class="ps-tab-list">
+                        <li class="active"><a href="#sign-in">Login</a></li>
+                        <li><a href="#register">Register</a></li>
+                    </ul>
+                    <div class="ps-tabs">
+                        <div class="ps-tab active" id="sign-in">
+                            <form id="addForm" onsubmit="return Login_Account();">
+                                <div class="ps-form__content">
+                                    <h5>Log In Your Account</h5>
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.Username, new { @name = "username", @id = "username", @required = "required", @placeholder = "Username or email address", @class = "form-control" })
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        @Html.TextBoxFor(m => m.Password, new { name = "passwordDetail", id = "passwordDetail", @type = "password", @required = "required", @class = "form-control", @placeholder = "Password" })
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="remember-me" name="remember-me">
+                                            <label for="remember-me">Rememeber me</label>
+                                        </div>
+                                    </div>
+                                    <label id="loginError" style="color:red;"></label>
+                                    <div class="form-group submtit">
+                                        <button class="ps-btn ps-btn--fullwidth">Login</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="ps-form__footer">
+                                <p>Connect with:</p>
+                                <ul class="ps-list--social">
+                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ps-tab" id="register">
+                            <form id="addRegisterForm" onsubmit="return SaveDetailForm();">
+                                <div class="ps-form__content">
+                                    <h5>Register An Account</h5>
+
+                                    <div class="form-group">
+                                        @*<input class="form-control" type="text" placeholder="Username">*@
+                                        @Html.TextBoxFor(m => m.Firstname, new { @type = "text", @id = "firstname", @required = "required", @placeholder = "First Name", @class = "form-control" })
+
+                                        @Html.TextBoxFor(m => m.Lastname, new { @type = "text", @id = "lastname", @required = "required", @placeholder = "Last Name", @class = "form-control" })
+                                    </div>
+                                    <div> <hr> </div><br>
+
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(m => m.Username, new { @type = "text", @id = "username", @required = "required", @placeholder = "Username", @class = "form-control" })
+
+                                        @Html.TextBoxFor(m => m.Password, new { @type = "password", @id = "password", @required = "required", @placeholder = "Password", @class = "form-control" })
+
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        @Html.TextBoxFor(m => m.Mobile, new { @type = "number", @id = "mobile", @required = "required", @placeholder = "Mobile No.", @class = "form-control" })
+
+                                        @Html.TextBoxFor(m => m.Email, new { @type = "email", @id = "email", @required = "required", @placeholder = "Email", @class = "form-control" })
+
+                                    </div>
+                                    <label id="loginError2" style="color:red;"></label>
+                                    <div class="form-group submtit">
+                                        <button class="ps-btn ps-btn--fullwidth">SignUp</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="ps-form__footer">
+                                <p>Connect with:</p>
+                                <ul class="ps-list--social">
+                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="~/Scripts/Project/login.js"></script>
