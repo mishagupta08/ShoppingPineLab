@@ -163,6 +163,15 @@ namespace PineLabsShoppingPortal
             }
         }
 
+        public async Task<ResponceDetail> MangeOtpFunctions(User user, string operation)
+        {
+            var data = JsonConvert.SerializeObject(user);
+            var result = await CallPostFunction(data, "MangeOtpFunctions/" + operation);
+            return result;
+        }
+
+
+
         public async Task<ResponceDetail> GetWallet(User ObjUser)
         {
             var detail = JsonConvert.SerializeObject(ObjUser);

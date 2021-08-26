@@ -10,6 +10,10 @@
             $("#WalletPayment").hide();
         }
   });
+
+  $('#GenerateOtp').click(function (e) {
+      GenerateOtp(this);
+  });
 });
 
 function AddToCartProductPurchaseDetail() {
@@ -88,7 +92,7 @@ function SaveBillingAddress() {
 }
 
 function ValidateTransaction() {
-    $("#loginError").html("");
+    $("#TransactionloginError").html("");
     var loginDetail = $('#WalletPay_checkUser').serialize();
     $(".preloader").show();
     $.ajax({
@@ -97,19 +101,27 @@ function ValidateTransaction() {
         datatype: 'Json',
         data: loginDetail
     }).done(function (result) {
-        $("#loginError1").html(result);
+        if (result.response == "FAILED") {
+            $("#TransactionloginError").show;
+            $("#TransactionloginError").html(result.msg);
+        }
+        else {
+            $("#WalletPay_checkUser_div").hide();
+            $("#BalanceAmount").html(result.walletBalance);
+            $("#WalletPay_OTP").show();           
+        }
         $(".preloader").hide();
 
     }).fail(function (error) {
-        $("#loginError1").html(error.statusText);
+        $("#TransactionloginError").html(error.statusText);
         $(".preloader").hide();
     });
     return false;
 }
 
 
-function GenerateOtp(thisvar) {
-    $("#loginError").html("");
+function GenerateOtp() {
+    $("#otpMessage").html("");
     $(".preloader").show();
     $.ajax({
         url: '/Home/GenerateOtpDetail',
@@ -117,11 +129,35 @@ function GenerateOtp(thisvar) {
         datatype: 'Json',
         data: {}
     }).done(function (result) {
+        $("#WalletPay_OTP").hide();
+        $("#Verify_OTP").show();
         $("#otpMessage").html(result);
         $(".preloader").hide();
 
+
     }).fail(function (error) {
         $("#loginError").html(error.statusText);
+        $(".preloader").hide();
+    });
+
+    return false;
+}
+
+function ValidateOtp() {
+    $("#ValidateOtpError").html("");
+    var loginDetail = $('#WalletPay_ValidateOTP').serialize();
+    $(".preloader").show();
+    $.ajax({
+        url: '/Home/ValidateOtp',
+        type: 'Post',
+        datatype: 'Json',
+        data: loginDetail
+    }).done(function (result) {
+        $("#ValidateOtpError").html(result);
+        $(".preloader").hide();
+
+    }).fail(function (error) {
+        $("#loginError1").html(error.statusText);
         $(".preloader").hide();
     });
 

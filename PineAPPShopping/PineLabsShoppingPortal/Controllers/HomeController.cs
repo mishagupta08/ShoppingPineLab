@@ -457,18 +457,16 @@ namespace PineLabsShoppingPortal.Controllers
             this.repository = new Repository();
             var user = Session["UserDetail"] as User;
             var res = new ResponceDetail();
-            res = await this.repository.ValidateTransaction(objUser);
-            WalletResponse obj = new WalletResponse();
-            HomeViewModel home = new HomeViewModel();
-            home.OrderDetail = res.OrderDetail;
-            //return PartialView("_PartialGetOrderNoDetail", home);
-            return Json(home, JsonRequestBehavior.AllowGet);
+            res = await this.repository.GetWallet(objUser);
+            WalletResponse obj = new WalletResponse();            
+            var WalletDetail = res.WalletResponse;            
+            return Json(WalletDetail, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<ActionResult> GetWallet(User objUser)
         {
             this.repository = new Repository();
-            var user = Session["UserDetail"] as User;
+            //var user = Session["UserDetail"] as User;
             var res = new ResponceDetail();
             res = await this.repository.GetWallet(objUser);
             WalletResponse obj = new WalletResponse();
@@ -476,6 +474,65 @@ namespace PineLabsShoppingPortal.Controllers
             home.OrderDetail = res.OrderDetail;
             //return PartialView("_PartialGetOrderNoDetail", home);
             return Json(home, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> GenerateOtpDetail()
+        {
+           
+            var result = new ResponceDetail();
+            var message = string.Empty;
+            this.repository = new Repository();
+            try
+            {
+                if (CheckLoginUserStatus())
+                {
+                    var user = Session["UserDetail"] as User;
+                    result = await this.repository.MangeOtpFunctions(user, "GenerateOtp");
+                    if (result == null)
+                    {
+                        message = "Something went wrong.Please try again later.";
+                    }
+                    else
+                    {
+                        message = "Otp Generated Successfully";
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+            }
+
+            return Json(message);
+        }
+
+
+        public async Task<ActionResult> ValidateOtp(User detailModel)
+        {
+            
+            var objRepository = new Repository();
+            var result = new ResponceDetail ();
+
+            detailModel.Username = "GW223344";
+            detailModel.Password = "123456";
+            detailModel.OTPCode = detailModel.OTPCode;
+            result = await objRepository.MangeOtpFunctions(detailModel, "ValidateOtp");
+            if (result == null)
+            {
+                return Json("Failed");
+            }
+            else if (result.Status == false)
+            {
+                return Json(result.Message);
+            }
+            else
+            {
+                detailModel.TxnData = "123;10;Test";
+                result = await objRepository.DeductWallet(detailModel);
+            }
+            return Json("Success");
+            
         }
     }
 }

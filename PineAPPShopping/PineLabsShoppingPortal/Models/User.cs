@@ -16,6 +16,7 @@ namespace PineLabsShoppingPortal.Models
         public string Email { get; set; }
         public string WalletType { get; set; }
         public string TxnData { get; set; }
+        public string OTPCode { get; set; }
         public Nullable<System.DateTime> Created { get; set; }
         public Nullable<System.DateTime> Modified { get; set; }
         public Nullable<bool> Status { get; set; }

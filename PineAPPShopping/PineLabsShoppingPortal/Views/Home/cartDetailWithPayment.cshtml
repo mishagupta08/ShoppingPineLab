@@ -244,7 +244,7 @@
                                     <td id="PaymentUserID"> 
                                         @current_user.Username 
                                         @*<input type="hidden" id="Username" value="@current_user.Username" />*@
-                                        <input type="hidden" id="Username" value="GW223344" />
+                                        <input type="hidden" id="Username" name="Username" value="GW223344" />
                                     </td>                                    
                                 </tr>
                                 <tr>
@@ -263,9 +263,9 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <div class="btngap1"> <p class="redalert" style="display:none;" id="Transactionlogin"> </p> 
+                                        <div class="btngap1"> <p class="redalert" style="display:none;" id="TransactionloginError"> </p> 
                                             <input type="submit" class="ps-btn ps-btn--fullwidth" value="Validate"/>
-                                         </div>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
@@ -278,46 +278,49 @@
                                 <td>Available Wallet Balance </td>
                                 <td> Rs. <span id="BalanceAmount"></span> </td>
                             </tr>
-                            <tr>
-                                <td><img src="img/logo-photo.png" class="img-thumbnail img-fluid"> </td>
-                                <td><input type="text" class="form-control" placeholder="Captcha Code"></td>
-                            </tr>
-                            <tr> &nbsp; </tr>
+                            @*<tr>
+        <td><img src="img/logo-photo.png" class="img-thumbnail img-fluid"> </td>
+        <td><input type="text" class="form-control" placeholder="Captcha Code"></td>
+    </tr>
+    <tr> &nbsp; </tr>*@
                             <tr>
                                 <td colspan="2">
-                                    <p>OTP send on Mobile No. 99XXXXX09</p>
-                                    <div class="btngap2"> <p class="redalert"> this is invalid text. </p> <a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i> Generate OTP </a> </div>
+                                    <p>OTP send on Mobile No. @current_user.Mobile </p>
+                                    <div class="btngap2"> <p class="redalert" id="OTPSendError" style="display:none;"> this is invalid text. </p> 
+                                    <a class="ps-btn ps-btn--fullwidth" href="##" id="GenerateOtp"><i class="alert-info"></i> Generate OTP </a> </div>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 card" style="display:none;">
+                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 card" style="display:none;" id="Verify_OTP">
                         <br>
-                        <table class="table table-borderless">
-                            <tr>
-                                <td><p class="textalign"> Enter OTP </p></td>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="Enter OTP">
-                                    <p> <a href="#"> <strong class="texline">Resend OTP</strong> </a> </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Amount to Pay </td>
-                                <td><h4>Rs. 975.00 </h4></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <div class="form-group">
-                                        <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="cb02" name="brand">
-                                            <label for="cb02"> i Accept <a href="#" class="text-primary" data-toggle="modal" data-target="#myModal"> Terms and Conditions </a> </label>
+                        <form id="WalletPay_ValidateOTP" name="WalletPay_ValidateOTP" onsubmit="return ValidateOTP();">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><p class="textalign"> Enter OTP </p></td>
+                                    <td>
+                                        <input name="User.OtpCode" type="text" class="form-control" placeholder="Enter OTP">
+                                        <p> <a href="#"> <strong class="texline">Resend OTP</strong> </a> </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Amount to Pay </td>
+                                    <td><h4>Rs. 975.00 </h4></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="form-group">
+                                            <div class="ps-checkbox">
+                                                <input class="form-control" type="checkbox" id="cb02" name="brand">
+                                                <label for="cb02"> i Accept <a href="#" class="text-primary" data-toggle="modal" data-target="#myModal"> Terms and Conditions </a> </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="btngap3"> <p class="redalert"> this is invalid text. </p> <a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i>Proceed to Pay </a> </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                                        <div class="btngap3"> <p class="redalert"> this is invalid text. </p> <a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i>Proceed to Pay </a> </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            </form>
+</div>
                 </div>
                 <p>&nbsp; </p>
             </div>
