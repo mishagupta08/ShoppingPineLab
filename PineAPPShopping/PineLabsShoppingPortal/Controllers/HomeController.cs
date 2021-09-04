@@ -326,8 +326,10 @@ namespace PineLabsShoppingPortal.Controllers
                     {
                         list.Add(i);
                     }
+
                     this.homeModel.PageProductList.pagerCount = list.ToPagedList(Convert.ToInt32(page), 10);
                     ViewBag.Page = page;
+                    ViewBag.CatId = catId;
                 }
 
                 this.homeModel.CategoryList = await GetMenuList();

@@ -1166,6 +1166,7 @@
     <Content Include="assets\scss\_switches.scss" />
     <Content Include="assets\scss\_widgets.scss" />
     <None Include="Properties\PublishProfiles\pineFront.pubxml" />
+    <None Include="Properties\PublishProfiles\pineshop.pubxml" />
     <None Include="Properties\PublishProfiles\PineShopping.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
