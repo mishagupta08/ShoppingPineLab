@@ -1,0 +1,24 @@
+-----------Exception Details on  05-Sep-21 11:41:43 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 05-Sep-21 11:41:43 PM
+
+Error Line No : ine 226
+
+Error Message: TaskCanceledException
+
+Exception Type: System.Threading.Tasks.TaskCanceledException
+
+Error Location : A task was canceled.
+
+ Error Page Url: http://localhost:64962/Home/CreateOrder
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+

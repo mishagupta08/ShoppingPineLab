@@ -171,7 +171,7 @@ namespace PineLabsShoppingPortal.Controllers
             return Json(res);
         }
 
-        public async Task<ActionResult> GetCartRelatedListView(string pageName)
+        public async Task<ActionResult> GetCartRelatedListView(string pageName,string orderId)
         {
             if (CheckLoginUserStatus())
             {
@@ -188,7 +188,7 @@ namespace PineLabsShoppingPortal.Controllers
                 }
                 else if (pageName == Resources.CartDetailWithPayment)
                 {
-
+                    this.homeModel.OrderId = orderId;
                     return View("cartDetailWithPayment", this.homeModel);
                 }
                 else if (pageName == Resources.CheckoutPage)
@@ -213,7 +213,7 @@ namespace PineLabsShoppingPortal.Controllers
 
         }
 
-        public async Task<ActionResult> CreateOrder(string pageName)
+        public async Task<ActionResult> CreateOrder(string pageName,string orderId)
         {
             try
             {
@@ -222,6 +222,7 @@ namespace PineLabsShoppingPortal.Controllers
                 {
                     var ord = new OrderContainer();
                     ord.UserId = (Session["UserDetail"] as User).Id;
+                    ord.orderId = orderId;
                     this.repository = new Repository();
                     var res = await this.repository.ManageOrder(ord, "CreateOrder");
 

@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
-  $('input[type=radio][name=PayMode]').change(function () {
+    $('input[type=radio][name=PayMode]').change(function () {
 
-      if (this.value == 'wallet') {
+        if (this.value == 'wallet') {
             $("#WalletPayment").show();
             $("#WalletPay_checkUser_div").show();
         }
@@ -9,19 +9,18 @@
         else if (this.value == 'bank') {
             $("#WalletPayment").hide();
         }
-  });
+    });
 
-  $('#GenerateOtp').click(function (e) {
-      GenerateOtp(this);
-  });
+    $('#GenerateOtp').click(function (e) {
+        GenerateOtp(this);
+    });
 });
 
 function AddToCartProductPurchaseDetail() {
     $(".preloader").show();
     debugger;
     var Qty = parseInt(document.getElementById("qtyTextBox").value);
-    if (Qty > 10)
-    {
+    if (Qty > 10) {
         alert("Quantity Should not Greater than 10!");
         return false;
     }
@@ -70,8 +69,7 @@ function SaveBillingAddress() {
             alert("Something went wrong, Please try again later.");
         }
         else if (result.Status == false) {
-            if (result.Message == "Login")
-            {
+            if (result.Message == "Login") {
                 window.location.href = "/Login/Index";
             }
             else {
@@ -79,7 +77,7 @@ function SaveBillingAddress() {
             }
         }
         else {
-            window.location.href = "/Home/GetCartRelatedListView?pageName=CartDetailWithPayment";
+            window.location.href = "/Home/GetCartRelatedListView?pageName=CartDetailWithPayment&orderId=" + result.OrderId + "";
         }
 
         $(".preloader").hide();
@@ -108,7 +106,7 @@ function ValidateTransaction() {
         else {
             $("#WalletPay_checkUser_div").hide();
             $("#BalanceAmount").html(result.walletBalance);
-            $("#WalletPay_OTP").show();           
+            $("#WalletPay_OTP").show();
         }
         $(".preloader").hide();
 

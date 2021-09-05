@@ -41,7 +41,7 @@ namespace PineLabsShoppingPortal.Models
         //public List<MyOrderReport> Report { get; set; }
         public List<MyOrderReport> OrderReport { get; set; }
         public List<MyOrderDetail> OrderDetail { get; set; }
-
+        public string OrderId { get; set; }
 
     }
 

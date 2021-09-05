@@ -30,6 +30,7 @@ namespace PineLabsShoppingPortal.Models
         public List<MyOrderDetail> OrderDetail { get; set; }
         public WalletResponse WalletResponse { get; set; }
         public Distributor Distributor { get; set; }
+        public string OrderId { get; set; }
 
 
     }

@@ -227,7 +227,7 @@
 
             <div class="row">
                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <a class="ps-btn ps-btn--fullwidth" href="@Url.Action("CreateOrder","Home")"><i class="alert-info"></i> Proceed to Pay </a>
+                    <a class="ps-btn ps-btn--fullwidth" href="@Url.Action("CreateOrder","Home", new { orderId = Model.OrderId})"><i class="alert-info"></i> Proceed to Pay </a>
                     <p>&nbsp; </p>
                 </div>
             </div>

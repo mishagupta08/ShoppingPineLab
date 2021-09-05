@@ -12,9 +12,10 @@ namespace PineLabsShoppingPortal
 {
     public class Repository
     {
-         private string ApiUrl = "http://pineapp.bisplindia.in/api/Home/";
+        //private string ApiUrl = "http://pineapp.bisplindia.in/api/Home/";
+        //private string ApiUrl = "http://papi.bisplindia.in/api/Home/";
         //private string ApiUrl = "http://localhost:55641/api/Home/";
-        //private string ApiUrl = "http://localhost:55708/api/Home/";
+        private string ApiUrl = "http://localhost:55708/api/Home/";
 
         private string CategoryAction = "ManageCategory";
 
@@ -219,6 +220,7 @@ namespace PineLabsShoppingPortal
                 if (httpResponse.Content != null)
                 {
                     var responseContent = await httpResponse.Content.ReadAsStringAsync();
+
 
                     var result = JsonConvert.DeserializeObject<ResponceDetail>(responseContent);
 
