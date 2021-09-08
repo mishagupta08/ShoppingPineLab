@@ -24,12 +24,12 @@
         var OrderRefNo = refno;
         $.ajax({
             type: "Post",
-            url: '/Home/SrchOrderDetail',
-            dataType: "Json",
+            url: '/Home/OrderPartial',
+            dataType: "html",
             data: { OrderRefNo: OrderRefNo },
             success: function (data) {
                 debugger;
-                $('#divmodel').html(data.OrderDetail);
+                $('#divmodel').html(data);
                 $('#myModal').modal('show');
                 //$('#divmodel').show();
             }
@@ -117,37 +117,7 @@
                     
                     <div class="modal-body" id="divmodel">
                      
-                        <table id="table" class="table table-striped table-bordered dataTables" cellspacing="0" width="100%">
-
-                            <thead>
-                                <tr>
-
-                                    <th>Product Name</th>
-                                    <th>Amount</th>
-                                    <th>Cart Number</th>
-                                    <th>Cart Pin</th>
-                                    <th>Name</th>
-                                    <th>Validity</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var report in Model.OrderDetail)
-                                {
-                                    <tr>
-                                        <td align="center">@report.ProductName</td>
-
-                                        <td align="center">@report.Amount</td>
-
-                                        <td align="center">@report.EnrptCardNo</td>
-                                        <td align="center">@report.EnrptCardPin</td>
-                                        <td align="center">@report.Validity</td>
-
-                                    </tr>
-                                }
-
-                            </tbody>
-                        </table>
+                        
 
 
                         <div id="GrdOrderNo">

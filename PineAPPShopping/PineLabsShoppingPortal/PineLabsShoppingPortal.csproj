@@ -1238,6 +1238,7 @@
     <Content Include="Views\Home\CheckoutPage.cshtml" />
     <Content Include="Views\Home\cartDetailWithPayment.cshtml" />
     <Content Include="Views\Home\thankYouPage.cshtml" />
+    <Content Include="Views\Home\_OrderDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

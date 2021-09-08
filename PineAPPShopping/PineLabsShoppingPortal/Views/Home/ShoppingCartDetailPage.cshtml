@@ -33,10 +33,10 @@
                                 <tr>
                                     <th>PARTICULARS</th>
                                     <th>PRODUCT QUANTITY</th>
-                                    <th>MARKET PRICE</th>
-                                    <th>OFFER PRICE</th>
-                                    <th>DISCOUNT POINTS</th>
-                                    <th>SHIPPING CHARGES</th>
+                                    <th>PRICE</th>
+                                    @*<th>OFFER PRICE</th>*@
+                                    @*<th>DISCOUNT POINTS</th>*@
+                                    @*<th>SHIPPING CHARGES</th>*@
                                     <th>NET AMOUNT</th>
                                     <th></th>
                                 </tr>
@@ -51,7 +51,7 @@
                                                 <div class="ps-product__thumbnail"><a href="@Url.Action("GetProductDetailPage", "Home", new { Sku = prod.ProductSku})"><img src="@prod.thumbnail" alt=""></a></div>
                                                 <div class="ps-product__content">
                                                     <a href="#"> @prod.ProductName </a>
-                                                    <p>Sold By:<strong> DISCOUNT TADKA </strong> <br> COLOR : RED | SIZE : 42  </p>
+                                                    @*<p>Sold By:<strong> DISCOUNT TADKA </strong> <br> COLOR : RED | SIZE : 42  </p>*@
                                                 </div>
                                             </div>
                                         </td>
@@ -67,10 +67,10 @@
                                                 <a href="#" name="updateQuantity" data-id="@prod.Id" class="text-uppercase">Update</a>*@
                                             </div>
                                         </td>
-                                        <td align="center">XXXX</td>
+                                        @*<td align="center">XXXX</td>*@
                                         <td align="center">@prod.ProdPrice</td>
-                                        <td align="center">XXX</td>
-                                        <td align="center">XXX</td>
+                                        @*<td align="center">XXX</td>
+                                        <td align="center">XXX</td>*@
                                         <td align="center">@prod.TotalPrice</td>
                                         <td><a href="#" name="deleteCart" data-id="@prod.Id"><!--<i class="icon-cross"></i> --> <img src="~/img/delete_icon.png" class="img-fluid"></a></td>
                                     </tr>

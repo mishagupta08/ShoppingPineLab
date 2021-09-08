@@ -1,0 +1,39 @@
+﻿@model List<PineLabsShoppingPortal.Models.MyOrderDetail>
+@using PineLabsShoppingPortal.Properties
+@{
+    //Layout = "~/Views/Shared/productLayout.cshtml";
+}
+<table id="table" class="table table-striped table-bordered dataTables" cellspacing="0" width="100%">
+
+    <thead>
+        <tr>
+
+            <th>Product Name</th>
+            <th>Amount</th>
+            <th>Card Number</th>
+            <th>Card Pin</th>
+            
+            <th>Validity</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td align="center">@report.ProductName</td>
+
+                <td align="center">@report.Amount</td>
+
+                <td align="center">@report.EnrptCardNo</td>
+                <td align="center">@report.EnrptCardPin</td>
+                <td align="center">@report.Validity</td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+

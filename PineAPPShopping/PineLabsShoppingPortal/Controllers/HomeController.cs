@@ -454,7 +454,16 @@ namespace PineLabsShoppingPortal.Controllers
             //return PartialView("_PartialGetOrderNoDetail", home);
             return Json(home, JsonRequestBehavior.AllowGet);
         }
-
+        public async Task<ActionResult> OrderPartial(string OrderRefNo)
+        {
+            this.repository = new Repository();
+            var user = Session["UserDetail"] as User;
+            var res = new ResponceDetail();
+            res = await this.repository.MyOrderDetailReport(user, OrderRefNo);
+            List<MyOrderDetail> model = new List<MyOrderDetail>();
+            model = res.OrderDetail;
+            return PartialView("_OrderDetail", model);
+        }
         public async Task<ActionResult> ValidateTransaction(User objUser)
         {
             this.repository = new Repository();
