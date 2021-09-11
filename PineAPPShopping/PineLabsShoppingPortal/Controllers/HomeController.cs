@@ -298,6 +298,7 @@ namespace PineLabsShoppingPortal.Controllers
         }
 
         public async Task<ActionResult> GetProductListView(int page, int catId)
+
         {
             var prodList = new List<Product>();
             this.repository = new Repository();

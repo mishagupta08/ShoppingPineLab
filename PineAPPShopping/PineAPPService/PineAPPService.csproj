@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E2A5C545-995C-4A30-89D1-293B6D41EFC8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PineAPPService</RootNamespace>
+    <AssemblyName>PineAPPService</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExceptionLogging.cs" />
+    <Compile Include="General.cs" />
+    <Compile Include="Interface\I_Sms.cs" />
+    <Compile Include="Models\ApiPinCoderesponse.cs" />
+    <Compile Include="Models\BillingAddress.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CarteDetail.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CategoryMaster.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CategoryResponce.cs" />
+    <Compile Include="Models\Company.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\companybak.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAllCategoryList_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getBillAddress_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCartListByUserId_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCategoryListWithFilter_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetEmailQue_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetProductDetailBySku_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSMSQue_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getUserDetail_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Image.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobEMAILQue.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobEmailSetting.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobFinalEmailQue.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobFinalSMSQue.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobSMSQue.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobSMSSetting.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ledger.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MessageApi.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\messgeApi.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyOrderReport_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\M_reqOrderStatus.cs" />
+    <Compile Include="Models\M_ResCardActivated.cs" />
+    <Compile Include="Models\M_Sms.cs" />
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\orderbak09092021.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderPayment.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderPaymentbak09092021.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\orderReportcs.cs" />
+    <Compile Include="Models\OrderStatusResponse.cs" />
+    <Compile Include="Models\order_card.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\order_card09092021.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\order_product.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\order_productbak09092021.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PineDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PineDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PineDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PineDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PineDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PineService.Context.cs" />
+    <Compile Include="Models\PineService.cs" />
+    <Compile Include="Models\PineService.Designer.cs">
+      <DependentUpon>PineService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductCategoryRelationTbl.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductContentTbl.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductDenomination.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductDetailContainer.cs" />
+    <Compile Include="Models\ProductDiscount.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductList.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductListContainer.cs" />
+    <Compile Include="Models\ProductThemeTbl.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RelatedProductList.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ResponceDetail.cs" />
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SmsApi.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getOrderStatus_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_MyOrderdetail_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_MyOrderReport_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_SaveAPIRequest_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_UpdateOrderStatus_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblApiRequestResponse.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblOrderRefNo.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TempCategory.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TokenResponce.cs" />
+    <Compile Include="Models\UpdateCartDetail_Result.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WohooProductList.cs">
+      <DependentUpon>PineDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repoistory\R_SMS.cs" />
+    <Compile Include="Service1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Service1.Designer.cs">
+      <DependentUpon>Service1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Models\PineDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PineDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\PineDB.edmx.diagram">
+      <DependentUpon>PineDB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\PineDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PineDB.edmx</DependentUpon>
+      <LastGenOutput>PineDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PineDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PineDB.edmx</DependentUpon>
+      <LastGenOutput>PineDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
