@@ -13,9 +13,9 @@ namespace PineLabsShoppingPortal
     public class Repository
     {
         //private string ApiUrl = "http://pineapp.bisplindia.in/api/Home/";
-        private string ApiUrl = "http://papi.bisplindia.in/api/Home/";
+        //private string ApiUrl = "http://papi.bisplindia.in/api/Home/";
         //private string ApiUrl = "http://localhost:55641/api/Home/";
-        //private string ApiUrl = "http://localhost:55708/api/Home/";
+        private string ApiUrl = "http://localhost:55708/api/Home/";
 
         private string CategoryAction = "ManageCategory";
 
@@ -28,7 +28,7 @@ namespace PineLabsShoppingPortal
 
         private string ManageUserAction = "ManageUser/";
         private string OrderReport = "OrderReport";
-
+        private string FundRequestAction = "FundRequest";
 
 
         private string GetProductListByCategoryIdAction = "GetProductListByCategoryId";
@@ -203,7 +203,19 @@ namespace PineLabsShoppingPortal
                 return result;
             }
         }
-
+        public async Task<ResponceDetail> FundRequest(FundRequest objFundRequest)
+        {
+            var detail = JsonConvert.SerializeObject(objFundRequest);
+            var result = await CallPostFunction(detail, FundRequestAction);
+            if (result == null || !result.Status)
+            {
+                return null;
+            }
+            else
+            {
+                return result;
+            }
+        }
         #region commonfunction
 
         private async Task<ResponceDetail> CallPostFunction(string detail, string action)

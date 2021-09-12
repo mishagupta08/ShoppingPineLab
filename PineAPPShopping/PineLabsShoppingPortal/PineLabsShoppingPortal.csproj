@@ -1196,6 +1196,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryProductContainer.cs" />
     <Compile Include="Models\Filters.cs" />
+    <Compile Include="Models\FundRequestResponse.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\MyOrderReport.cs" />
     <Compile Include="Models\OrderContainer.cs" />
@@ -1239,6 +1240,7 @@
     <Content Include="Views\Home\cartDetailWithPayment.cshtml" />
     <Content Include="Views\Home\thankYouPage.cshtml" />
     <Content Include="Views\Home\_OrderDetail.cshtml" />
+    <Content Include="Views\Home\_FundRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

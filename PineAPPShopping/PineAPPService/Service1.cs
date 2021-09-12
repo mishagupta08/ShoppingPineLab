@@ -120,7 +120,7 @@ namespace PineAPPService
 
         private void WriteToFile(string text)
         {
-            string path = "C:\\ServiceLog.txt";
+            string path = "C:\\PineServiceLog.txt";
             using (StreamWriter writer = new StreamWriter(path, true))
             {
                 writer.WriteLine(string.Format(text, DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt")));
@@ -567,7 +567,7 @@ namespace PineAPPService
         }
         private void LogService(string content)
         {
-            FileStream fs = new FileStream(@"C:\ServiceLog.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            FileStream fs = new FileStream(@"C:\PineServiceLog.txt", FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);
             sw.BaseStream.Seek(0, SeekOrigin.End);
             sw.WriteLine(content);

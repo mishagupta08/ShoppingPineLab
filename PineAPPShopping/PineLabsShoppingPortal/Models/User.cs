@@ -23,6 +23,7 @@ namespace PineLabsShoppingPortal.Models
         public Nullable<System.DateTime> LastLogin { get; set; }
         public Nullable<int> CompanyId { get; set; }
         public Nullable<int> RoleId { get; set; }
+        public Nullable<int> ParentId { get; set; }
     }
 
     public partial class Distributor
