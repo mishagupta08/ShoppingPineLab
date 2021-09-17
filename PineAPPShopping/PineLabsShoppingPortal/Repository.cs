@@ -29,7 +29,7 @@ namespace PineLabsShoppingPortal
         private string ManageUserAction = "ManageUser/";
         private string OrderReport = "OrderReport";
         private string FundRequestAction = "FundRequest";
-
+        private string GetBalanceAction = "GetBalance";
 
         private string GetProductListByCategoryIdAction = "GetProductListByCategoryId";
 
@@ -207,6 +207,19 @@ namespace PineLabsShoppingPortal
         {
             var detail = JsonConvert.SerializeObject(objFundRequest);
             var result = await CallPostFunction(detail, FundRequestAction);
+            if (result == null || !result.Status)
+            {
+                return null;
+            }
+            else
+            {
+                return result;
+            }
+        }
+        public async Task<ResponceDetail> GetBalance(User user)
+        {
+            var detail = JsonConvert.SerializeObject(user);
+            var result = await CallPostFunction(detail, GetBalanceAction);
             if (result == null || !result.Status)
             {
                 return null;

@@ -42,6 +42,7 @@ namespace PineLabsShoppingPortal.Models
         public List<MyOrderReport> OrderReport { get; set; }
         public List<MyOrderDetail> OrderDetail { get; set; }
         public string OrderId { get; set; }
+        public decimal Balance { get; set; }
 
     }
 

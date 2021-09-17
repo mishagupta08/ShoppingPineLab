@@ -31,6 +31,7 @@ namespace PineAPPService
 
         #endregion
         string LiveCONNECTION_STRING = ConfigurationManager.ConnectionStrings["liveconstr"].ConnectionString;
+        string ApiUrl = ConfigurationManager.AppSettings["ApiUrl"];
         I_Sms isms;
         public Service1()
         {
@@ -133,7 +134,7 @@ namespace PineAPPService
             {
                 SendSmsQue();
                 SendEmailQue();
-                //GetOrderStatusQue();
+                GetOrderStatusQue();
 
             }
             catch (Exception ex)
@@ -690,14 +691,14 @@ namespace PineAPPService
                         //clsgen.ErrorLog(path, ("SUCCESS-1:" + output2));
 
                         //http://pineapp.bisplindia.in
-                        reponse = clsgen.PostJSON(output2, "http://pineapp.bisplindia.in/api/Home/GetOrderStatus");
+                        reponse = clsgen.PostJSON(output2, ApiUrl + "GetOrderStatus");
                         jsonResponse = clsgen.GetResponse(reponse);
 
                         ApiPinCoderesponse Codeorder = new ApiPinCoderesponse();
                         {
                             Codeorder.request = output2;
                             Codeorder.response = jsonResponse;
-                            Codeorder.url = "http://pineapp.bisplindia.in/api/Home/GetOrderStatus";
+                            Codeorder.url = ApiUrl + "GetOrderStatus";
                         }
                         var statusID = isms.SaveAPIRequest(Codeorder);
 
@@ -711,13 +712,13 @@ namespace PineAPPService
                             card.offset = 0;
                             card.limit = 0;
                             output2 = JsonConvert.SerializeObject(card);
-                            reponse = clsgen.PostJSON(output2, "http://pineapp.bisplindia.in/api/Home/ActivetedCardApi");
+                            reponse = clsgen.PostJSON(output2, ApiUrl + "ActivetedCardApi");
                             jsonResponse = clsgen.GetResponse(reponse);
                             ApiPinCoderesponse Code = new ApiPinCoderesponse();
                             {
                                 Code.request = output2;
                                 Code.response = jsonResponse;
-                                Code.url = "http://pineapp.bisplindia.in/api/Home/ActivetedCardApi";
+                                Code.url = ApiUrl + "ActivetedCardApi";
                             }
                             var statusID1 = isms.SaveAPIRequest(Code);
                             responceObject = JsonConvert.DeserializeObject<ResponceDetail>(jsonResponse);
@@ -819,14 +820,14 @@ namespace PineAPPService
                             var Ststus = responceObject.CreateOrderResponceDetail.status;
                             var OrderRefNo = responceObject.CreateOrderResponceDetail.refno;
                             DataSet dcancel = isms.CancelOrderStatus(OrderRefNo, Ststus);
-                            //reponse = clsgen.PostJSON(output2, "http://pineapp.bisplindia.in/api/Home/GetOrderStatus");
+                            //reponse = clsgen.PostJSON(output2, "ApiUrl/GetOrderStatus");
                             //jsonResponse = clsgen.GetResponse(reponse);
 
                             //ApiPinCoderesponse order = new ApiPinCoderesponse();
                             //{
                             //    order.request = output2;
                             //    order.response = jsonResponse;
-                            //    order.url = "http://pineapp.bisplindia.in/api/Home/GetOrderStatus";
+                            //    order.url = "ApiUrl/GetOrderStatus";
                             //}
                             //var status = isms.SaveAPIRequest(order);
                         }

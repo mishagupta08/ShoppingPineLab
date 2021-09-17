@@ -31,7 +31,7 @@ namespace PineLabsShoppingPortal.Models
         public WalletResponse WalletResponse { get; set; }
         public Distributor Distributor { get; set; }
         public string OrderId { get; set; }
-
+        public decimal Balance { get; set; }
 
     }
 

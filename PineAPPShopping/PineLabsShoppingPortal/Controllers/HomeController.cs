@@ -21,7 +21,7 @@ namespace PineLabsShoppingPortal.Controllers
             this.homeModel = new HomeViewModel();
             this.homeModel.CategoryList = await GetMenuList();
             this.homeModel.ProductList = await GetLatestProductList();
-
+            //this.homeModel.Balance = await GeBalance();
             return View(this.homeModel);
         }
 
@@ -546,6 +546,28 @@ namespace PineLabsShoppingPortal.Controllers
             }
             return Json("Success");
             
+        }
+        private async Task<decimal> GeBalance()
+        {
+            decimal balance = 0;
+            User user = new Models.User();
+            user.Id = Convert.ToDecimal(Session["UserId"]);
+            this.repository = new Repository();
+            try
+            {
+              
+                var res = await this.repository.GetBalance(user);
+                if (res != null && res.Status)
+                {
+                    balance = res.Balance;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return balance;
         }
     }
 }

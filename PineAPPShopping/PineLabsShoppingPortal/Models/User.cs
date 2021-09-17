@@ -24,6 +24,7 @@ namespace PineLabsShoppingPortal.Models
         public Nullable<int> CompanyId { get; set; }
         public Nullable<int> RoleId { get; set; }
         public Nullable<int> ParentId { get; set; }
+        public decimal Balance { get; set; }
     }
 
     public partial class Distributor

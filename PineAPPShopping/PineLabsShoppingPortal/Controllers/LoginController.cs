@@ -41,8 +41,10 @@ namespace PineLabsShoppingPortal.Controllers
                     if (result.Status == true)
                     {
                         User user = result.UserDetail;
+                        user.Balance = result.Balance;
                         FormsAuthentication.SetAuthCookie(user.Username, false);
                         Session["UserDetail"] = user;
+                        Session["Balance"] = user.Balance;
                         return Json("Success", JsonRequestBehavior.AllowGet);
                     }
                     else

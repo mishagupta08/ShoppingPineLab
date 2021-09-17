@@ -14,6 +14,9 @@
     $('#GenerateOtp').click(function (e) {
         GenerateOtp(this);
     });
+    $('#btnProceed').click(function (e) {
+        ValidateOtp(this);
+    });
 });
 
 function AddToCartProductPurchaseDetail() {
