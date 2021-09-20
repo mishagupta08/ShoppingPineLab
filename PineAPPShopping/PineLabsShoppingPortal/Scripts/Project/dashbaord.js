@@ -14,8 +14,11 @@
     $('#GenerateOtp').click(function (e) {
         GenerateOtp(this);
     });
-    $('#btnProceed').click(function (e) {
+    $('#btnProceedWallet').click(function (e) {
         ValidateOtp(this);
+    });
+    $('#ResendOtp').click(function (e) {
+        GenerateOtp(this);
     });
 });
 
@@ -155,10 +158,47 @@ function ValidateOtp() {
         data: loginDetail
     }).done(function (result) {
         $("#ValidateOtpError").html(result);
+        if (result == "Success") {
+            //$('#btnProceedWallet').show();
+            createOrder();
+        }
+        // { $('#btnProceedWallet').hide(); }
         $(".preloader").hide();
 
     }).fail(function (error) {
         $("#loginError1").html(error.statusText);
+        $(".preloader").hide();
+    });
+
+    return false;
+}
+function createOrder() {
+    $(".preloader").show();
+    var orderId = $('OrderNo')
+    $.ajax({
+        url: '/Home/ManageOrderWithWallet',
+        type: 'Post',
+        datatype: 'Json',
+        data: { "orderId": orderId }
+    }).done(function (result) {
+        if (result == null || result == undefined || result == "") {
+            alert("Something went wrong, Please try again later.");
+        }
+        else if (result.Status == false) {
+            if (result.Message == "Login") {
+                window.location.href = "/Login/Index";
+            }
+            else {
+                alert(result.Message);
+            }
+        }
+        else {
+            window.location.href = "/Home/GetCartRelatedListView?pageName=CartDetailWithPayment&orderId=" + result.OrderId + "";
+        }
+
+        $(".preloader").hide();
+    }).fail(function (error) {
+        alert(error.statusText);
         $(".preloader").hide();
     });
 

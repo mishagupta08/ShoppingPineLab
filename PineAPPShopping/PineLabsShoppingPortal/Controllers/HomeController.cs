@@ -466,6 +466,7 @@ namespace PineLabsShoppingPortal.Controllers
             return PartialView("_OrderDetail", model);
         }
         public async Task<ActionResult> ValidateTransaction(User objUser)
+
         {
             this.repository = new Repository();
             var user = Session["UserDetail"] as User;
@@ -526,9 +527,9 @@ namespace PineLabsShoppingPortal.Controllers
             
             var objRepository = new Repository();
             var result = new ResponceDetail ();
-
-            detailModel.Username = "GW223344";
-            detailModel.Password = "123456";
+            var user = Session["UserDetail"] as User;
+            detailModel.Username = user.Username;
+            detailModel.Password = user.Password;
             detailModel.OTPCode = detailModel.OTPCode;
             result = await objRepository.MangeOtpFunctions(detailModel, "ValidateOtp");
             if (result == null)
@@ -541,8 +542,10 @@ namespace PineLabsShoppingPortal.Controllers
             }
             else
             {
-                detailModel.TxnData = "123;10;Test";
-                result = await objRepository.DeductWallet(detailModel);
+                string agentid = "";
+                agentid = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                detailModel.TxnData = ""+ agentid + ";10;Test";
+                //result = await objRepository.DeductWallet(detailModel);
             }
             return Json("Success");
             
@@ -568,6 +571,35 @@ namespace PineLabsShoppingPortal.Controllers
             }
 
             return balance;
+        }
+        public async Task<ActionResult> ManageOrderWithWallet(OrderContainer order)
+        {
+            try
+            {
+
+                if (CheckLoginUserStatus())
+                {
+                    var ord = new OrderContainer();
+                    ord.UserId = (Session["UserDetail"] as User).Id;
+                    ord.orderId = order.orderId;
+                    this.repository = new Repository();
+                    var res = await this.repository.ManageOrderWithWallet(ord, "CreateOrder");
+
+                    return View("thankYouPage", res);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogging.SendErrorToText(ex);
+                //clsgen.ErrorLog(Server.MapPath("Logs/ErrorLog"), ("FlightPayment.aspx.cs/Page_Load" + ex.Message));
+            }
+
+            return null;
         }
     }
 }

@@ -24,6 +24,7 @@ namespace PineLabsShoppingPortal
         private string ManageCartAction = "ManageCart/";
 
         private string ManageOrderAction = "ManageOrder/";
+        private string ManageOrderWalletAction = "ManageOrderWithWallet/";
         private string OrderReportDetail = "OrderReportDetail/";
 
         private string ManageUserAction = "ManageUser/";
@@ -221,6 +222,20 @@ namespace PineLabsShoppingPortal
             var detail = JsonConvert.SerializeObject(user);
             var result = await CallPostFunction(detail, GetBalanceAction);
             if (result == null || !result.Status)
+            {
+                return null;
+            }
+            else
+            {
+                return result;
+            }
+        }
+        public async Task<ResponceDetail> ManageOrderWithWallet(OrderContainer cDetail, string operation)
+        {
+            var detail = JsonConvert.SerializeObject(cDetail);
+
+            var result = await CallPostFunction(detail, ManageOrderWalletAction + operation);
+            if (result == null)
             {
                 return null;
             }

@@ -192,14 +192,14 @@
                                 <label class="labelcss"><b> E-WALLET PAYMENT </b> </label>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+                        @*<div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-check">
                                 <div>
                                     <input class="form-check-input radiobtn" type="radio" name="PayMode" id="IMPSRadio" value="bank" check="">
                                 </div>
                                 <label class="labelcss"> <b>IMPS/CASH/NEFT/RTGS/CHEQUE </b> </label>
                             </div>
-                        </div>
+                        </div>*@
                         @*<div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-check">
                                 <div>
@@ -225,12 +225,12 @@
             <p>&nbsp; </p>
 
 
-            <div class="row">
+            @*<div class="row">
                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
                     <a class="ps-btn ps-btn--fullwidth" href="@Url.Action("CreateOrder","Home", new { orderId = Model.OrderId})"><i class="alert-info"></i> Proceed to Pay </a>
                     <p>&nbsp; </p>
                 </div>
-            </div>
+            </div>*@
 
 
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="WalletPayment">
@@ -245,6 +245,7 @@
                                         @current_user.Username 
                                         @*<input type="hidden" id="Username" value="@current_user.Username" />*@
                                         <input type="hidden" id="Username" name="Username" value="GW223344" />
+                                        <input type="hidden" id="OrderNo" name="OrderNo" value=@Model.OrderId />
                                     </td>                                    
                                 </tr>
                                 <tr>
@@ -299,8 +300,8 @@
                                 <tr>
                                     <td><p class="textalign"> Enter OTP </p></td>
                                     <td>
-                                        <input name="User.OtpCode" type="text" class="form-control" placeholder="Enter OTP">
-                                        <p> <a href="#"> <strong class="texline">Resend OTP</strong> </a> </p>
+                                        <input name="OtpCode" type="text" class="form-control" placeholder="Enter OTP">
+                                       <a href="##" id="ResendOtp"> <strong class="texline">Resend OTP</strong> </a> 
                                     </td>
                                 </tr>
                                 <tr>
@@ -315,10 +316,10 @@
                                                 <label for="cb02"> i Accept <a href="#" class="text-primary" data-toggle="modal" data-target="#myModal"> Terms and Conditions </a> </label>
                                             </div>
                                         </div>
-                                        <div class="btngap3"> <p class="redalert"> this is invalid text. </p> 
-                                        @*<a class="ps-btn ps-btn--fullwidth" href="##"><i class="alert-info"></i>Proceed to Pay </a>*@ 
-                                            <input type="button" class="ps-btn ps-btn--fullwidth" id="btnProceed" value="Proceed to Pay" />
+                                        <div class="btngap3"> <p class="redalert" id="ValidateOtpError"> this is invalid text. </p> 
+                                          
                                         </div>
+                                        <input type="button" class="ps-btn ps-btn--fullwidth" id="btnProceedWallet" value="Proceed to Pay" />
                                     </td>
                                 </tr>
                             </table>
