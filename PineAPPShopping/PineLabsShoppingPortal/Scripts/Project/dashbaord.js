@@ -174,7 +174,7 @@ function ValidateOtp() {
 }
 function createOrder() {
     $(".preloader").show();
-    var orderId = $('OrderNo')
+    var orderId = $('#OrderNo').val();
     $.ajax({
         url: '/Home/ManageOrderWithWallet',
         type: 'Post',

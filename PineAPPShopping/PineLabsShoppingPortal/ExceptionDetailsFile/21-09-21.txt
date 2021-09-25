@@ -1,0 +1,24 @@
+-----------Exception Details on  21-Sep-21 12:20:32 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 21-Sep-21 12:20:32 AM
+
+Error Line No : ine 586
+
+Error Message: TaskCanceledException
+
+Exception Type: System.Threading.Tasks.TaskCanceledException
+
+Error Location : A task was canceled.
+
+ Error Page Url: http://localhost:64962/Home/ManageOrderWithWallet
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
